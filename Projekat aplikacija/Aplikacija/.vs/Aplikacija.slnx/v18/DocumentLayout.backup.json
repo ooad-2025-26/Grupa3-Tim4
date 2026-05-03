@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\sesija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\sesija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\pricingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\playstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\playstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\placanje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\placanje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\pc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\pc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\loyaltyprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\loyaltyprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\kvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\kvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\korisnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\korisnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\projekat aplikacija\\aplikacija\\aplikacija\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Sesija.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Sesija.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\Sesija.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Sesija.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\Sesija.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:17.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PricingService.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PricingService.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\PricingService.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PricingService.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\PricingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:15.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayStation.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PlayStation.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\PlayStation.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PlayStation.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\PlayStation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:14.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Placanje.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Placanje.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\Placanje.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Placanje.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\Placanje.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:13.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PC.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PC.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\PC.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PC.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\PC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:11.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoyaltyProgram.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\LoyaltyProgram.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\LoyaltyProgram.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\LoyaltyProgram.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\LoyaltyProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:10.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Kvar.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Kvar.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\Kvar.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Kvar.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\Kvar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:09.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Korisnik.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Korisnik.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\Korisnik.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Korisnik.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\Korisnik.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:08.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "Aplikacija\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:35:05.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\KORISNIK\\Desktop\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Aplikacija\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-03T19:34:40.344Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
