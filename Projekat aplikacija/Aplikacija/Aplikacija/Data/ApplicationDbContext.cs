@@ -63,4 +63,12 @@ public class ApplicationDbContext : IdentityDbContext
             .Property(u => u.Status)
             .HasConversion<string>();
     }
+
+public DbSet<Aplikacija.Models.DeviceService> DeviceService { get; set; } = default!;
+
+public DbSet<Aplikacija.Models.GotovinskoPlacanje> GotovinskoPlacanje { get; set; } = default!;
+
+public DbSet<Aplikacija.Models.KarticnoPlacanje> KarticnoPlacanje { get; set; } = default!;
+
+public DbSet<Aplikacija.Models.LoyaltyPlacanje> LoyaltyPlacanje { get; set; } = default!;
 }
