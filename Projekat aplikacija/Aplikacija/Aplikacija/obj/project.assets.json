@@ -6164,23 +6164,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ismar\\.nuget\\packages\\": {},
+    "C:\\Users\\aljic\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ismar\\OneDrive\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Aplikacija.csproj",
+      "projectUniqueName": "C:\\Users\\aljic\\OneDrive\\Desktop\\OOAD-LAB1\\Grupa3-Tim4\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Aplikacija.csproj",
       "projectName": "Aplikacija",
-      "projectPath": "C:\\Users\\ismar\\OneDrive\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Aplikacija.csproj",
-      "packagesPath": "C:\\Users\\ismar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ismar\\OneDrive\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Aplikacija\\Aplikacija\\obj\\",
+      "projectPath": "C:\\Users\\aljic\\OneDrive\\Desktop\\OOAD-LAB1\\Grupa3-Tim4\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Aplikacija.csproj",
+      "packagesPath": "C:\\Users\\aljic\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aljic\\OneDrive\\Desktop\\OOAD-LAB1\\Grupa3-Tim4\\Projekat aplikacija\\Aplikacija\\Aplikacija\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ismar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aljic\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
