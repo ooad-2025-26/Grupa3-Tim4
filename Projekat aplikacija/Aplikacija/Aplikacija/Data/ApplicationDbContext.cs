@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext : IdentityDbContext<Korisnik>
+public class ApplicationDbContext : IdentityDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }
 
+    public DbSet<Korisnik> Korisnik { get; set; }
     public DbSet<Rezervacija> Rezervacija { get; set; }
     public DbSet<Narudzba> Narudzba { get; set; }
     public DbSet<Takmicenje> Takmicenje { get; set; }
@@ -24,18 +25,12 @@ public class ApplicationDbContext : IdentityDbContext<Korisnik>
     public DbSet<LoyaltyProgram> LoyaltyProgram { get; set; }
     public DbSet<Placanje> Placanje { get; set; }
 
-    public DbSet<DeviceService> DeviceService { get; set; } = default!;
-    public DbSet<GotovinskoPlacanje> GotovinskoPlacanje { get; set; } = default!;
-    public DbSet<KarticnoPlacanje> KarticnoPlacanje { get; set; } = default!;
-    public DbSet<LoyaltyPlacanje> LoyaltyPlacanje { get; set; } = default!;
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Korisnik se NE mapira na tabelu "Korisnik"
-        // jer Identity koristi sistemsku tabelu "AspNetUsers"
-
+        // Tabele
+        modelBuilder.Entity<Korisnik>().ToTable("Korisnik");
         modelBuilder.Entity<Rezervacija>().ToTable("Rezervacija");
         modelBuilder.Entity<Narudzba>().ToTable("Narudzba");
         modelBuilder.Entity<Takmicenje>().ToTable("Takmicenje");
@@ -51,11 +46,7 @@ public class ApplicationDbContext : IdentityDbContext<Korisnik>
         modelBuilder.Entity<LoyaltyProgram>().ToTable("LoyaltyProgram");
         modelBuilder.Entity<Placanje>().ToTable("Placanje");
 
-        modelBuilder.Entity<DeviceService>().ToTable("DeviceService");
-        modelBuilder.Entity<GotovinskoPlacanje>().ToTable("GotovinskoPlacanje");
-        modelBuilder.Entity<KarticnoPlacanje>().ToTable("KarticnoPlacanje");
-        modelBuilder.Entity<LoyaltyPlacanje>().ToTable("LoyaltyPlacanje");
-
+        // ENUM konverzije
         modelBuilder.Entity<Rezervacija>()
             .Property(r => r.Status)
             .HasConversion<string>();
@@ -72,4 +63,12 @@ public class ApplicationDbContext : IdentityDbContext<Korisnik>
             .Property(u => u.Status)
             .HasConversion<string>();
     }
+
+    public DbSet<Aplikacija.Models.DeviceService> DeviceService { get; set; } = default!;
+
+    public DbSet<Aplikacija.Models.GotovinskoPlacanje> GotovinskoPlacanje { get; set; } = default!;
+
+    public DbSet<Aplikacija.Models.KarticnoPlacanje> KarticnoPlacanje { get; set; } = default!;
+
+    public DbSet<Aplikacija.Models.LoyaltyPlacanje> LoyaltyPlacanje { get; set; } = default!;
 }

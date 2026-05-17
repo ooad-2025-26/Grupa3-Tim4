@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.KorisnickoIme)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PasswordHash)
+                @Html.DisplayNameFor(model => model.Lozinka)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ClanarinaAktivna)
@@ -28,10 +28,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.KorisnickoIme)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
+                @Html.DisplayFor(modelItem => item.Lozinka)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ClanarinaAktivna)
