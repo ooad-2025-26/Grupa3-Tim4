@@ -47,7 +47,7 @@ namespace Aplikacija.Controllers
         // GET: Narudzbas/Create
         public IActionResult Create()
         {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id");
+            ViewData["KorisnikId"] = new SelectList(User.Identity.Name, "Id", "Id");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace Aplikacija.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", narudzba.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(User.Identity.Name, "Id", "Id", narudzba.KorisnikId);
             return View(narudzba);
         }
 
@@ -81,7 +81,7 @@ namespace Aplikacija.Controllers
             {
                 return NotFound();
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", narudzba.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(User.Identity.Name, "Id", "Id", narudzba.KorisnikId);
             return View(narudzba);
         }
 
@@ -117,7 +117,7 @@ namespace Aplikacija.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", narudzba.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(User.Identity.Name, "Id", "Id", narudzba.KorisnikId);
             return View(narudzba);
         }
 

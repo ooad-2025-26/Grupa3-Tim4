@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNetCore.Routing.Constraints;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Aplikacija.Models
 {
-    public class Korisnik
+    public class Korisnik : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-
-        public string KorisnickoIme { get; set; }
-        public string Lozinka { get; set; }
         public bool ClanarinaAktivna { get; set; }
     }
 }
