@@ -6,42 +6,96 @@
 Thumbs.db
 desktop.ini
 $RECYCLE.BIN/
-.Spotlight-V100
-.Trashes
-
-# ========================
-# TEMP FILES
-# ========================
-
-*.tmp
-*.temp
-*.bak
-*.swp
-*.swo
-*.log
-*.cache
+.Spotlight-V100/
+.Trashes/
 
 # ========================
 # VISUAL STUDIO
 # ========================
 
 .vs/
-*.user
 *.suo
+*.user
 *.userosscache
+*.rsuser
 *.sln.docstates
+*.vsidx
 
-# Build folders
+# ========================
+# BUILD FOLDERS
+# ========================
+
 bin/
 obj/
 Debug/
 Release/
 x64/
 x86/
+artifacts/
+TestResults/
 
-# NuGet
+# ========================
+# BUILD OUTPUT FILES
+# ========================
+
+*.dll
+*.exe
+*.pdb
+*.obj
+*.o
+*.lib
+*.exp
+
+# ========================
+# .NET / ASP.NET GENERATED
+# ========================
+
+*.deps.json
+*.runtimeconfig.json
+*.AssemblyInfo.cs
+*.nuget.g.props
+*.nuget.g.targets
+*.csproj.nuget.*
+*.FileListAbsolute.txt
+
+# ========================
+# CACHE FILES
+# ========================
+
+*.cache
+*.genruntimeconfig.cache
+*.assets.cache
+*.Reference.cache
+*.editorconfig
+*.staticwebassets*
+*Input.cache
+*Inputs.cache
+
+# ========================
+# NUGET
+# ========================
+
 packages/
+.nuget/
 *.nupkg
+
+# ========================
+# LOGS / TEMP
+# ========================
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ========================
+# ENVIRONMENT FILES
+# ========================
+
+.env
+.env.*
 
 # ========================
 # VS CODE
@@ -50,116 +104,8 @@ packages/
 .vscode/
 
 # ========================
-# NODE.JS
-# ========================
-
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-store/
-.next/
-dist/
-build/
-coverage/
-
-# ========================
-# REACT
-# ========================
-
-.env
-.env.local
-.env.development.local
-.env.production.local
-
-# ========================
-# PYTHON
-# ========================
-
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-venv/
-env/
-.venv/
-
-# ========================
-# JAVA
-# ========================
-
-target/
-*.class
-*.jar
-
-# ========================
-# C++
-# ========================
-
-*.o
-*.obj
-*.exe
-*.out
-
-# ========================
-# DATABASE
-# ========================
-
-*.db
-*.sqlite
-*.sqlite3
-
-# ========================
-# COMPRESSED FILES
-# ========================
-
-*.zip
-*.rar
-*.7z
-*.tar
-*.gz
-
-# ========================
-# LOCAL CONFIG
-# ========================
-
-.env
-.env.*
-
-# ========================
-# TEST OUTPUTS
-# ========================
-
-coverage/
-TestResults/
-
-# ========================
-# GENERATED FILES
-# ========================
-
-Generated/
-generated/
-
-# ========================
-# CACHE
-# ========================
-
-.cache/
-.cache-loader/
-.parcel-cache/
-.eslintcache
-
-# ========================
-# IDE
+# JETBRAINS / RIDER
 # ========================
 
 .idea/
 *.iml
-
-# ========================
-# MAC/LINUX HIDDEN FILES
-# ========================
-
-.*
-!.gitignore
-!.gitattributes
