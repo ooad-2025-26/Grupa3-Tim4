@@ -1,6 +1,165 @@
-Projekat aplikacija/Projekat aplikacija/Aplikacija/.vs/Aplikacija.slnx/DesignTimeBuild/.dtbcache.v2
-Projekat aplikacija/Projekat aplikacija/Aplikacija/.vs/Aplikacija.slnx/DesignTimeBuild/.dtbcache.v2
-*.v2
-*.v2
-*.vsidx
-/Projekat aplikacija/Projekat aplikacija/Aplikacija/.vs
+# ========================
+# OPERATING SYSTEM
+# ========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
+
+# ========================
+# TEMP FILES
+# ========================
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.log
+*.cache
+
+# ========================
+# VISUAL STUDIO
+# ========================
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build folders
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+
+# NuGet
+packages/
+*.nupkg
+
+# ========================
+# VS CODE
+# ========================
+
+.vscode/
+
+# ========================
+# NODE.JS
+# ========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+.next/
+dist/
+build/
+coverage/
+
+# ========================
+# REACT
+# ========================
+
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# ========================
+# PYTHON
+# ========================
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.venv/
+
+# ========================
+# JAVA
+# ========================
+
+target/
+*.class
+*.jar
+
+# ========================
+# C++
+# ========================
+
+*.o
+*.obj
+*.exe
+*.out
+
+# ========================
+# DATABASE
+# ========================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# ========================
+# COMPRESSED FILES
+# ========================
+
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# ========================
+# LOCAL CONFIG
+# ========================
+
+.env
+.env.*
+
+# ========================
+# TEST OUTPUTS
+# ========================
+
+coverage/
+TestResults/
+
+# ========================
+# GENERATED FILES
+# ========================
+
+Generated/
+generated/
+
+# ========================
+# CACHE
+# ========================
+
+.cache/
+.cache-loader/
+.parcel-cache/
+.eslintcache
+
+# ========================
+# IDE
+# ========================
+
+.idea/
+*.iml
+
+# ========================
+# MAC/LINUX HIDDEN FILES
+# ========================
+
+.*
+!.gitignore
+!.gitattributes
