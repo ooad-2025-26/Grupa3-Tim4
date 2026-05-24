@@ -1,28 +1,126 @@
-## Visual Studio
-.vs/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
+# ========================
+# OPERATING SYSTEM
+# ========================
 
-## Build folders
-bin/
-obj/
-
-## ASP.NET
-appsettings.Development.json
-
-## Rider / VS Code
-.idea/
-.vscode/
-
-## NuGet
-packages/
-*.nupkg
-
-## Logs
-*.log
-
-## OS files
 .DS_Store
 Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100/
+.Trashes/
+
+# ========================
+# VISUAL STUDIO
+# ========================
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.rsuser
+*.sln.docstates
+*.vsidx
+
+# ========================
+# BUILD FOLDERS
+# ========================
+
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+artifacts/
+TestResults/
+
+# ========================
+# BUILD OUTPUT FILES
+# ========================
+
+*.dll
+*.exe
+*.pdb
+*.obj
+*.o
+*.lib
+*.exp
+apphost.exe
+
+# ========================
+# .NET / ASP.NET GENERATED
+# ========================
+
+*.deps.json
+*.runtimeconfig.json
+*.AssemblyInfo.cs
+*.nuget.g.props
+*.nuget.g.targets
+*.csproj.nuget.*
+*.FileListAbsolute.txt
+project.assets.json
+project.nuget.cache
+
+# ========================
+# CACHE FILES
+# ========================
+
+*.cache
+*.assets.cache
+*.Reference.cache
+*.genruntimeconfig.cache
+*.editorconfig
+*Input.cache
+*Inputs.cache
+*UpToDateCheck.txt
+
+# ========================
+# STATIC WEB ASSETS
+# ========================
+
+staticwebassets*
+*.staticwebassets*
+*.build.json
+*.removed.txt
+*.endpoints.json
+*.development.json
+*.swa.cache.json
+
+# ========================
+# NUGET
+# ========================
+
+packages/
+.nuget/
+*.nupkg
+
+# ========================
+# LOGS / TEMP
+# ========================
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ========================
+# ENVIRONMENT FILES
+# ========================
+
+.env
+.env.*
+
+# ========================
+# VS CODE
+# ========================
+
+.vscode/
+
+# ========================
+# JETBRAINS / RIDER
+# ========================
+
+.idea/
+*.iml
