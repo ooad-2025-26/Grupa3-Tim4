@@ -1,7 +1,12 @@
-﻿namespace Aplikacija.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Aplikacija.Models
 {
     public enum StatusUredjaja
     {
-        Slobodan, Zauzet, Neispravan, Rezervisan
+        [Display(Name = "Available")] Slobodan, 
+        [Display(Name = "In Use")] Zauzet, 
+        [Display(Name = "Out of Order")] Neispravan, 
+        [Display(Name = "Reserved")] Rezervisan
     }
 }

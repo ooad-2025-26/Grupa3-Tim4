@@ -1,7 +1,14 @@
-﻿namespace Aplikacija.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Aplikacija.Models
 {
     public enum StatusKvara
     {
-        Prijavljen, UObradi, Otklonjen
+        [Display(Name = "Reported")]
+        Prijavljen,
+        [Display(Name = "In Progress")]
+        UObradi,
+        [Display(Name = "Resolved")]
+        Otklonjen
     }
 }

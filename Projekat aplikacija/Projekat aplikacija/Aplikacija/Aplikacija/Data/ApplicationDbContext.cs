@@ -46,6 +46,37 @@ public class ApplicationDbContext : IdentityDbContext<Korisnik>
         modelBuilder.Entity<LoyaltyProgram>().ToTable("LoyaltyProgram");
         modelBuilder.Entity<Placanje>().ToTable("Placanje");
 
+        modelBuilder.Entity<Kvar>()
+        .HasOne(k => k.Sesija)
+        .WithMany()
+        .HasForeignKey(k => k.SesijaId)
+        .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Kvar>()
+        .HasOne(k => k.Uredjaj)
+        .WithMany()
+        .HasForeignKey(k => k.UredjajId)
+        .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Sesija>()
+       .HasOne(s => s.Uredjaj)
+       .WithMany()
+       .HasForeignKey(s => s.UredjajId)
+       .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Sesija>()
+            .HasOne(s => s.Korisnik)
+            .WithMany()
+            .HasForeignKey(s => s.KorisnikId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Sesija>()
+            .HasOne(s => s.Takmicenje)
+            .WithMany()
+            .HasForeignKey(s => s.TakmicenjeId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+
         // ENUM konverzije
         modelBuilder.Entity<Rezervacija>()
             .Property(r => r.Status)

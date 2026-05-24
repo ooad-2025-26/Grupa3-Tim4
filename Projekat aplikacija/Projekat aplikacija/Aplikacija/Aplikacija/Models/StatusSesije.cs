@@ -1,7 +1,12 @@
-﻿namespace Aplikacija.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Aplikacija.Models
 {
     public enum StatusSesije
     {
-        Aktivna, Zavrsena, Pauzirana, Istekla
+        [Display(Name = "Active")] Aktivna, 
+        [Display(Name = "Completed")] Zavrsena, 
+        [Display(Name = "Paused")] Pauzirana, 
+        [Display(Name = "Expired")] Istekla
     }
 }
