@@ -1,4 +1,5 @@
 using Aplikacija.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDefaultIdentity<Korisnik>(options =>
     {
         options.SignIn.RequireConfirmedAccount = true;
-    })
+        options.Password = new PasswordOptions
+        {
+            RequireDigit = false,
+            RequiredLength = 5,
+            RequireLowercase = false,
+            RequireUppercase = false,
+            RequireNonAlphanumeric = false,
+        };
+    }).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 var app = builder.Build();
@@ -32,6 +41,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
