@@ -14,17 +14,29 @@ using Aplikacija.Models;
 
 namespace Aplikacija.Controllers
 {
-    [Authorize(Roles = "Administrator,Employee")]
+    [Authorize]
     public class KorisnikController : Controller
     {
         private readonly ApplicationDbContext _context;
 
+        public IActionResult Pocetna()
+        {
+            if (HttpContext.User.IsInRole("Administrator"))
+                return View("AdminPanel");
+
+            if (HttpContext.User.IsInRole("Employee"))
+                return View("EmployeePanel");
+
+            return View("UserPanel");
+        }
         public KorisnikController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Korisnik
+
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Korisnik.ToListAsync());
@@ -39,7 +51,7 @@ namespace Aplikacija.Controllers
             }
 
             var korisnik = await _context.Korisnik
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(k => k.Id == id);
             if (korisnik == null)
             {
                 return NotFound();
