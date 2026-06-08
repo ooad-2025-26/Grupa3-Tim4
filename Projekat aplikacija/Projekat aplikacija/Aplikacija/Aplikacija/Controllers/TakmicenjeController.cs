@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Aplikacija.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +14,7 @@ using Aplikacija.Models;
 
 namespace Aplikacija.Controllers
 {
+    [Authorize(Roles = "Administrator,Employee")]
     public class TakmicenjeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -43,6 +49,7 @@ namespace Aplikacija.Controllers
         }
 
         // GET: Takmicenje/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -51,6 +58,7 @@ namespace Aplikacija.Controllers
         // POST: Takmicenje/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Naziv,Igra,Datum")] Takmicenje takmicenje)
@@ -65,6 +73,7 @@ namespace Aplikacija.Controllers
         }
 
         // GET: Takmicenje/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,6 +92,7 @@ namespace Aplikacija.Controllers
         // POST: Takmicenje/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Naziv,Igra,Datum")] Takmicenje takmicenje)
@@ -116,6 +126,7 @@ namespace Aplikacija.Controllers
         }
 
         // GET: Takmicenje/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,6 +145,7 @@ namespace Aplikacija.Controllers
         }
 
         // POST: Takmicenje/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
