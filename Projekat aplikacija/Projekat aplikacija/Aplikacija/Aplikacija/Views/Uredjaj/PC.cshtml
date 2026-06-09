@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Aplikacija.Models.PC>
+
+@{
+    ViewData["Title"] = "PC Devices";
+}
+
+<h1>PC Devices</h1>
+
+<p>
+    <a asp-action="Create">Add PC</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Cijena po satu</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Naziv</td>
+                <td>@item.CijenaPoSatu</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

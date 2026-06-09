@@ -73,7 +73,7 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,KorisnickoIme,Lozinka,ClanarinaAktivna")] Korisnik korisnik)
+        public async Task<IActionResult> Create([Bind("Id,Ime,Prezime,Email,ClanarinaAktivna")] Korisnik korisnik)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,KorisnickoIme,Lozinka,ClanarinaAktivna")] Korisnik korisnik)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Ime,Prezime,Email,ClanarinaAktivna")] Korisnik korisnik)
         {
             if (id != korisnik.Id)
             {
@@ -160,7 +160,7 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var korisnik = await _context.Korisnik.FindAsync(id);
             if (korisnik != null)

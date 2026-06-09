@@ -58,13 +58,23 @@
 else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Employee"))
 {
     <h2>Employee Panel</h2>
-
     <div class="row">
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
+            <div class="card p-3">
+                <h4>Users</h4>
+                <p>View registered users.</p>
+
+                <a asp-controller="Korisnik" asp-action="Index" class="btn btn-success">
+                    View Users
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
             <div class="card p-3">
                 <h4>Reservations</h4>
-                <p>View and manage reservations.</p>
+                <p>View reservations and start user sessions.</p>
 
                 <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-success">
                     View Reservations
@@ -72,13 +82,30 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
             </div>
         </div>
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <div class="card p-3">
                 <h4>Devices</h4>
-                <p>View devices and report device issues.</p>
+                <p>View devices and their status.</p>
 
                 <a asp-controller="Uredjaj" asp-action="Index" class="btn btn-success">
                     View Devices
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-4 mb-3">
+            <div class="card p-3 text-center">
+                <h4>Sessions</h4>
+                <p>Start a new session for a user.</p>
+
+                <a asp-controller="Sesija"
+                       asp-action="Create"
+                       class="btn btn-warning">
+                    Start Session
                 </a>
             </div>
         </div>
@@ -96,8 +123,8 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
                 <h4>Reservations</h4>
                 <p>Create a new reservation or review your reservations.</p>
 
-                <a asp-controller="Rezervacija" asp-action="Create" class="btn btn-info mb-2">
-                    New Reservation
+                <a asp-controller="Rezervacija" asp-action="UserCreate" class="btn btn-info mb-2">
+                    Add Reservation
                 </a>
             </div>
         </div>
@@ -117,7 +144,7 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
 }
 else
 {
-    <h1>Gaming Center Management System</h1>
+    <h1>Gaming Center System</h1>
 
     <p>
         Welcome to the Gaming Center System.

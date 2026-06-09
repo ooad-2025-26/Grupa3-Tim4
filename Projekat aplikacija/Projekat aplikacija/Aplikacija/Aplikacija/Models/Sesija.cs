@@ -33,8 +33,8 @@ namespace Aplikacija.Models
         public Korisnik Korisnik { get; set; }
 
         [ForeignKey("Takmicenje")]
-        public int TakmicenjeId { get; set; }
-        public Takmicenje Takmicenje { get; set; }
+        public int? TakmicenjeId { get; set; }
+        public Takmicenje? Takmicenje { get; set; }
 
         public int GetId() => Id;
         public DateTime GetVrijemePocetka() => VrijemePocetka;

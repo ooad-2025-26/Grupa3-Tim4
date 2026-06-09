@@ -51,7 +51,7 @@ namespace Aplikacija.Controllers
         }
 
         // GET: Sesija/Create
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Employee")]
         public IActionResult Create()
         {
             ViewData["UredjajId"] = new SelectList(_context.Uredjaj, "Id", "Id");
@@ -61,7 +61,7 @@ namespace Aplikacija.Controllers
         // POST: Sesija/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,VrijemePocetka,VrijemeZavrsetka,Status,UredjajId")] Sesija sesija)
@@ -77,7 +77,7 @@ namespace Aplikacija.Controllers
         }
 
         // GET: Sesija/Edit/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Employee")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,7 +97,7 @@ namespace Aplikacija.Controllers
         // POST: Sesija/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,VrijemePocetka,VrijemeZavrsetka,Status,UredjajId")] Sesija sesija)
@@ -132,7 +132,7 @@ namespace Aplikacija.Controllers
         }
 
         // GET: Sesija/Delete/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Employee")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -152,7 +152,7 @@ namespace Aplikacija.Controllers
         }
 
         // POST: Sesija/Delete/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator,Employee")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

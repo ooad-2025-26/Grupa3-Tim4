@@ -164,5 +164,20 @@ namespace Aplikacija.Controllers
         {
             return _context.Uredjaj.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> PC()
+        {
+            return View(await _context.PC.ToListAsync());
+        }
+
+        public async Task<IActionResult> PlayStation()
+        {
+            return View(await _context.PlayStation.ToListAsync());
+        }
+
+        public async Task<IActionResult> XBox()
+        {
+            return View(await _context.XBox.ToListAsync());
+        }
     }
 }

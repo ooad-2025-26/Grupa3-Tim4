@@ -6,9 +6,12 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -42,12 +45,43 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Korisnik.Id)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+                <td>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                        <span>|</span>
+
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                        <span>|</span>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                        <span>|</span>
+
+                        <form asp-action="StartSession"
+                              method="post"
+                              style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-warning btn-sm">
+                                Start Session
+                            </button>
+                        </form>
+                    }
+
+                </td>
         </tr>
+
 }
     </tbody>
 </table>
+
+
