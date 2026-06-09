@@ -1,43 +1,61 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Aplikacija.Models
+
 @{
     ViewData["Title"] = "Add Reservation";
 
-    DateTime odabraniDatum = ViewBag.OdabraniDatum;
-    List<int> zauzetiSati = ViewBag.ZauzetiSati;
+    DateTime selectedDate = ViewBag.OdabraniDatum;
+    string selectedDeviceType = ViewBag.SelectedDeviceType ?? "PC";
+    List<int> busyHours = ViewBag.ZauzetiSati ?? new List<int>();
 }
 
 <h2>Add Reservation</h2>
 
 <form asp-action="UserCreate" method="get" class="mb-4">
-    <label>Choose date:</label>
-    <input type="date"
-           name="datum"
-           value="@odabraniDatum.ToString("yyyy-MM-dd")"
-           class="form-control"
-           style="max-width: 250px;"
-           onchange="this.form.submit()" />
+
+    <div class="form-group mb-3">
+        <label>Choose device type:</label>
+        <select name="deviceType"
+                class="form-control"
+                style="max-width: 250px;"
+                onchange="this.form.submit()">
+
+            <option value="PC" selected="@(selectedDeviceType == "PC")">PC</option>
+            <option value="PlayStation" selected="@(selectedDeviceType == "PlayStation")">PlayStation</option>
+            <option value="XBox" selected="@(selectedDeviceType == "XBox")">XBox</option>
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Choose date:</label>
+        <input type="date"
+               name="datum"
+               value="@selectedDate.ToString("yyyy-MM-dd")"
+               class="form-control"
+               style="max-width: 250px;"
+               onchange="this.form.submit()" />
+    </div>
+
 </form>
 
 <div class="row">
-    @for (int sat = 9; sat <= 21; sat++)
+    @for (int hour = 9; hour <= 21; hour++)
     {
-        bool zauzeto = zauzetiSati.Contains(sat);
+        bool isBusy = busyHours.Contains(hour);
 
         <div class="col-md-3 mb-3">
             <form asp-action="UserCreate" method="post">
                 @Html.AntiForgeryToken()
 
-                <input type="hidden" name="datum" value="@odabraniDatum.ToString("yyyy-MM-dd")" />
-                <input type="hidden" name="sat" value="@sat" />
+                <input type="hidden" name="datum" value="@selectedDate.ToString("yyyy-MM-dd")" />
+                <input type="hidden" name="sat" value="@hour" />
+                <input type="hidden" name="deviceType" value="@selectedDeviceType" />
 
                 <button type="submit"
-                        class="btn w-100 @(zauzeto ? "btn-secondary" : "btn-success")"
-                    @(zauzeto ? "disabled" : "")>
-                    @sat:00 - @(sat + 1):00
+                        class="btn w-100 @(isBusy ? "btn-secondary" : "btn-success")"
+                    @(isBusy ? "disabled" : "")>
+                    @hour:00 - @(hour + 1):00
                     <br />
-                    @(zauzeto ? "Zauzeto" : "Slobodno")
+                    @(isBusy ? "Unavailable" : "Available")
                 </button>
             </form>
         </div>

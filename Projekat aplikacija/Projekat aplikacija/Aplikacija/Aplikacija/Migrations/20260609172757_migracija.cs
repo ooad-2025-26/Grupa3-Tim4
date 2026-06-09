@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Aplikacija.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialIdentity : Migration
+    public partial class migracija : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,8 +30,8 @@ namespace Aplikacija.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ime = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Prezime = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     ClanarinaAktivna = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -54,57 +54,13 @@ namespace Aplikacija.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PC",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CijenaPoSatu = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PC", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlayStation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CijenaPoSatu = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlayStation", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SistemZaTakmicenje",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ApiUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IntervalOsvjezavanja = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SistemZaTakmicenje", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Takmicenje",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Igra = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Naziv = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Igra = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Datum = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -123,21 +79,6 @@ namespace Aplikacija.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Uredjaj", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "XBox",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CijenaPoSatu = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_XBox", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,43 +209,61 @@ namespace Aplikacija.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Narudzba",
+                name: "SistemZaTakmicenje",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Proizvod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cijena = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    TakmicenjeId = table.Column<int>(type: "int", nullable: false),
+                    ApiUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IntervalOsvjezavanja = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Narudzba", x => x.Id);
+                    table.PrimaryKey("PK_SistemZaTakmicenje", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Narudzba_Korisnik_KorisnikId",
-                        column: x => x.KorisnikId,
-                        principalTable: "Korisnik",
+                        name: "FK_SistemZaTakmicenje_Takmicenje_TakmicenjeId",
+                        column: x => x.TakmicenjeId,
+                        principalTable: "Takmicenje",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Placanje",
+                name: "PC",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Iznos = table.Column<double>(type: "float", nullable: false),
-                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CijenaPoSatu = table.Column<double>(type: "float", nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Placanje", x => x.Id);
+                    table.PrimaryKey("PK_PC", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Placanje_Korisnik_KorisnikId",
-                        column: x => x.KorisnikId,
-                        principalTable: "Korisnik",
+                        name: "FK_PC_Uredjaj_Id",
+                        column: x => x.Id,
+                        principalTable: "Uredjaj",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlayStation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CijenaPoSatu = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayStation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlayStation_Uredjaj_Id",
+                        column: x => x.Id,
+                        principalTable: "Uredjaj",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -318,7 +277,8 @@ namespace Aplikacija.Migrations
                     VrijemeOd = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VrijemeDo = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UredjajId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -329,23 +289,8 @@ namespace Aplikacija.Migrations
                         principalTable: "Korisnik",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Kvar",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UredjajId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Kvar", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Kvar_Uredjaj_UredjajId",
+                        name: "FK_Rezervacija_Uredjaj_UredjajId",
                         column: x => x.UredjajId,
                         principalTable: "Uredjaj",
                         principalColumn: "Id",
@@ -361,15 +306,127 @@ namespace Aplikacija.Migrations
                     VrijemePocetka = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VrijemeZavrsetka = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UredjajId = table.Column<int>(type: "int", nullable: false)
+                    UredjajId = table.Column<int>(type: "int", nullable: false),
+                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TakmicenjeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sesija", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Sesija_Korisnik_KorisnikId",
+                        column: x => x.KorisnikId,
+                        principalTable: "Korisnik",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Sesija_Takmicenje_TakmicenjeId",
+                        column: x => x.TakmicenjeId,
+                        principalTable: "Takmicenje",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Sesija_Uredjaj_UredjajId",
                         column: x => x.UredjajId,
                         principalTable: "Uredjaj",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "XBox",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CijenaPoSatu = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_XBox", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_XBox_Uredjaj_Id",
+                        column: x => x.Id,
+                        principalTable: "Uredjaj",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Kvar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Opis = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UredjajId = table.Column<int>(type: "int", nullable: false),
+                    SesijaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kvar", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Kvar_Sesija_SesijaId",
+                        column: x => x.SesijaId,
+                        principalTable: "Sesija",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Kvar_Uredjaj_UredjajId",
+                        column: x => x.UredjajId,
+                        principalTable: "Uredjaj",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Narudzba",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Proizvod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Cijena = table.Column<double>(type: "float", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SesijaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Narudzba", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Narudzba_Korisnik_KorisnikId",
+                        column: x => x.KorisnikId,
+                        principalTable: "Korisnik",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Narudzba_Sesija_SesijaId",
+                        column: x => x.SesijaId,
+                        principalTable: "Sesija",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Placanje",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Iznos = table.Column<double>(type: "float", nullable: false),
+                    KorisnikId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SesijaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Placanje", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Placanje_Korisnik_KorisnikId",
+                        column: x => x.KorisnikId,
+                        principalTable: "Korisnik",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Placanje_Sesija_SesijaId",
+                        column: x => x.SesijaId,
+                        principalTable: "Sesija",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -414,6 +471,11 @@ namespace Aplikacija.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Kvar_SesijaId",
+                table: "Kvar",
+                column: "SesijaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Kvar_UredjajId",
                 table: "Kvar",
                 column: "UredjajId");
@@ -429,9 +491,19 @@ namespace Aplikacija.Migrations
                 column: "KorisnikId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Narudzba_SesijaId",
+                table: "Narudzba",
+                column: "SesijaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Placanje_KorisnikId",
                 table: "Placanje",
                 column: "KorisnikId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Placanje_SesijaId",
+                table: "Placanje",
+                column: "SesijaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rezervacija_KorisnikId",
@@ -439,9 +511,29 @@ namespace Aplikacija.Migrations
                 column: "KorisnikId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Rezervacija_UredjajId",
+                table: "Rezervacija",
+                column: "UredjajId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sesija_KorisnikId",
+                table: "Sesija",
+                column: "KorisnikId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sesija_TakmicenjeId",
+                table: "Sesija",
+                column: "TakmicenjeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sesija_UredjajId",
                 table: "Sesija",
                 column: "UredjajId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SistemZaTakmicenje_TakmicenjeId",
+                table: "SistemZaTakmicenje",
+                column: "TakmicenjeId");
         }
 
         /// <inheritdoc />
@@ -484,13 +576,7 @@ namespace Aplikacija.Migrations
                 name: "Rezervacija");
 
             migrationBuilder.DropTable(
-                name: "Sesija");
-
-            migrationBuilder.DropTable(
                 name: "SistemZaTakmicenje");
-
-            migrationBuilder.DropTable(
-                name: "Takmicenje");
 
             migrationBuilder.DropTable(
                 name: "XBox");
@@ -499,7 +585,13 @@ namespace Aplikacija.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Sesija");
+
+            migrationBuilder.DropTable(
                 name: "Korisnik");
+
+            migrationBuilder.DropTable(
+                name: "Takmicenje");
 
             migrationBuilder.DropTable(
                 name: "Uredjaj");

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aplikacija.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260609115512_NasljedjivanjeUredjaja")]
-    partial class NasljedjivanjeUredjaja
+    [Migration("20260609172757_migracija")]
+    partial class migracija
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,29 +196,6 @@ namespace Aplikacija.Migrations
                     b.ToTable("Narudzba", (string)null);
                 });
 
-            modelBuilder.Entity("Aplikacija.Models.PC", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("CijenaPoSatu")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PC", (string)null);
-                });
-
             modelBuilder.Entity("Aplikacija.Models.Placanje", b =>
                 {
                     b.Property<int>("Id")
@@ -244,29 +221,6 @@ namespace Aplikacija.Migrations
                     b.HasIndex("SesijaId");
 
                     b.ToTable("Placanje", (string)null);
-                });
-
-            modelBuilder.Entity("Aplikacija.Models.PlayStation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("CijenaPoSatu")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PlayStation", (string)null);
                 });
 
             modelBuilder.Entity("Aplikacija.Models.Rezervacija", b =>
@@ -319,7 +273,7 @@ namespace Aplikacija.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TakmicenjeId")
+                    b.Property<int?>("TakmicenjeId")
                         .HasColumnType("int");
 
                     b.Property<int>("UredjajId")
@@ -408,29 +362,8 @@ namespace Aplikacija.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Uredjaj", (string)null);
-                });
 
-            modelBuilder.Entity("Aplikacija.Models.XBox", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("CijenaPoSatu")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("XBox", (string)null);
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -570,6 +503,52 @@ namespace Aplikacija.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Aplikacija.Models.PC", b =>
+                {
+                    b.HasBaseType("Aplikacija.Models.Uredjaj");
+
+                    b.Property<double>("CijenaPoSatu")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("PC", (string)null);
+                });
+
+            modelBuilder.Entity("Aplikacija.Models.PlayStation", b =>
+                {
+                    b.HasBaseType("Aplikacija.Models.Uredjaj");
+
+                    b.Property<double>("CijenaPoSatu")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("PlayStation", (string)null);
+                });
+
+            modelBuilder.Entity("Aplikacija.Models.XBox", b =>
+                {
+                    b.HasBaseType("Aplikacija.Models.Uredjaj");
+
+                    b.Property<double>("CijenaPoSatu")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("XBox", (string)null);
+                });
+
             modelBuilder.Entity("Aplikacija.Models.Kvar", b =>
                 {
                     b.HasOne("Aplikacija.Models.Sesija", "Sesija")
@@ -668,8 +647,7 @@ namespace Aplikacija.Migrations
                     b.HasOne("Aplikacija.Models.Takmicenje", "Takmicenje")
                         .WithMany()
                         .HasForeignKey("TakmicenjeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Aplikacija.Models.Uredjaj", "Uredjaj")
                         .WithMany()
@@ -742,6 +720,33 @@ namespace Aplikacija.Migrations
                     b.HasOne("Aplikacija.Models.Korisnik", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Aplikacija.Models.PC", b =>
+                {
+                    b.HasOne("Aplikacija.Models.Uredjaj", null)
+                        .WithOne()
+                        .HasForeignKey("Aplikacija.Models.PC", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Aplikacija.Models.PlayStation", b =>
+                {
+                    b.HasOne("Aplikacija.Models.Uredjaj", null)
+                        .WithOne()
+                        .HasForeignKey("Aplikacija.Models.PlayStation", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Aplikacija.Models.XBox", b =>
+                {
+                    b.HasOne("Aplikacija.Models.Uredjaj", null)
+                        .WithOne()
+                        .HasForeignKey("Aplikacija.Models.XBox", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

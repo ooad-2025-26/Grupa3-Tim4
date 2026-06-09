@@ -61,15 +61,55 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Status")] Uredjaj uredjaj)
+        public async Task<IActionResult> Create(
+    string VrstaUredjaja,
+    StatusUredjaja Status,
+    string Naziv,
+    double CijenaPoSatu,
+    string Model)
         {
-            if (ModelState.IsValid)
+            if (VrstaUredjaja == "PC")
             {
-                _context.Add(uredjaj);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                PC pc = new PC
+                {
+                    Status = Status,
+                    Naziv = Naziv,
+                    CijenaPoSatu = CijenaPoSatu,
+                    Model = Model
+                };
+
+                _context.PC.Add(pc);
             }
-            return View(uredjaj);
+            else if (VrstaUredjaja == "PlayStation")
+            {
+                PlayStation ps = new PlayStation
+                {
+                    Status = Status,
+                    Naziv = Naziv,
+                    CijenaPoSatu = CijenaPoSatu
+                };
+
+                _context.PlayStation.Add(ps);
+            }
+            else if (VrstaUredjaja == "XBox")
+            {
+                XBox xbox = new XBox
+                {
+                    Status = Status,
+                    Naziv = Naziv,
+                    CijenaPoSatu = CijenaPoSatu
+                };
+
+                _context.XBox.Add(xbox);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Morate izabrati vrstu uređaja.");
+                return View();
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Uredjaj/Edit/5

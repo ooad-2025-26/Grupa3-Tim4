@@ -15,7 +15,7 @@ using System.Security.Claims;
 
 namespace Aplikacija.Controllers
 {
-    [Authorize(Roles = "Administrator,Employee, User")]
+    [Authorize(Roles = "Administrator,Employee,User")]
     public class RezervacijaController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -58,7 +58,7 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id");
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Email");
             return View();
         }
 
@@ -177,16 +177,41 @@ namespace Aplikacija.Controllers
         }
 
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> UserCreate(DateTime? datum)
+        public async Task<IActionResult> UserCreate(DateTime? datum, string deviceType = "PC")
         {
             DateTime odabraniDatum = datum ?? DateTime.Today;
 
-            var rezervacije = await _context.Rezervacija
-                .Where(r => r.VrijemeOd.Date == odabraniDatum.Date)
-                .ToListAsync();
+            List<int> zauzetiSati = new List<int>();
+
+            List<int> uredjajIds = new List<int>();
+
+            if (deviceType == "PC")
+                uredjajIds = await _context.PC.Select(x => x.Id).ToListAsync();
+            else if (deviceType == "PlayStation")
+                uredjajIds = await _context.PlayStation.Select(x => x.Id).ToListAsync();
+            else if (deviceType == "XBox")
+                uredjajIds = await _context.XBox.Select(x => x.Id).ToListAsync();
+
+            for (int sat = 9; sat <= 21; sat++)
+            {
+                DateTime vrijemeOd = odabraniDatum.Date.AddHours(sat);
+                DateTime vrijemeDo = vrijemeOd.AddHours(1);
+
+                int brojZauzetih = await _context.Rezervacija
+                    .Where(r => uredjajIds.Contains(r.UredjajId)
+                             && r.VrijemeOd < vrijemeDo
+                             && r.VrijemeDo > vrijemeOd)
+                    .CountAsync();
+
+                if (uredjajIds.Count == 0 || brojZauzetih >= uredjajIds.Count)
+                {
+                    zauzetiSati.Add(sat);
+                }
+            }
 
             ViewBag.OdabraniDatum = odabraniDatum;
-            ViewBag.ZauzetiSati = rezervacije.Select(r => r.VrijemeOd.Hour).ToList();
+            ViewBag.ZauzetiSati = zauzetiSati;
+            ViewBag.SelectedDeviceType = deviceType;
 
             return View();
         }
@@ -194,19 +219,45 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UserCreate(DateTime datum, int sat)
+        public async Task<IActionResult> UserCreate(DateTime datum, int sat, string deviceType)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             DateTime vrijemeOd = datum.Date.AddHours(sat);
             DateTime vrijemeDo = vrijemeOd.AddHours(1);
 
-            bool zauzeto = await _context.Rezervacija.AnyAsync(r =>
-                r.VrijemeOd < vrijemeDo && r.VrijemeDo > vrijemeOd);
+            List<int> uredjajIds = new List<int>();
 
-            if (zauzeto)
+            if (deviceType == "PC")
+                uredjajIds = await _context.PC.Select(x => x.Id).ToListAsync();
+            else if (deviceType == "PlayStation")
+                uredjajIds = await _context.PlayStation.Select(x => x.Id).ToListAsync();
+            else if (deviceType == "XBox")
+                uredjajIds = await _context.XBox.Select(x => x.Id).ToListAsync();
+
+            int slobodanUredjajId = 0;
+
+            foreach (int id in uredjajIds)
             {
-                return RedirectToAction(nameof(UserCreate), new { datum = datum.ToString("yyyy-MM-dd") });
+                bool zauzet = await _context.Rezervacija.AnyAsync(r =>
+                    r.UredjajId == id &&
+                    r.VrijemeOd < vrijemeDo &&
+                    r.VrijemeDo > vrijemeOd);
+
+                if (!zauzet)
+                {
+                    slobodanUredjajId = id;
+                    break;
+                }
+            }
+
+            if (slobodanUredjajId == 0)
+            {
+                return RedirectToAction(nameof(UserCreate), new
+                {
+                    datum = datum.ToString("yyyy-MM-dd"),
+                    deviceType = deviceType
+                });
             }
 
             var rezervacija = new Rezervacija
@@ -214,16 +265,14 @@ namespace Aplikacija.Controllers
                 VrijemeOd = vrijemeOd,
                 VrijemeDo = vrijemeDo,
                 KorisnikId = userId,
-                Status = StatusRezervacije.Aktivna, // ako ti se enum drugačije zove, promijeni ovo
-                UredjajId = 1 // privremeno, poslije ćemo dati izbor uređaja
+                Status = StatusRezervacije.Aktivna,
+                UredjajId = slobodanUredjajId
             };
 
             _context.Rezervacija.Add(rezervacija);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Home");
-
-            
         }
 
         [Authorize(Roles = "Employee")]
@@ -256,5 +305,7 @@ namespace Aplikacija.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
     }
 }
