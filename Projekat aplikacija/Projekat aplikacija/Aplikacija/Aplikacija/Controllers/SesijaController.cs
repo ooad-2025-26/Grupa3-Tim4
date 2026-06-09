@@ -171,5 +171,46 @@ namespace Aplikacija.Controllers
         {
             return _context.Sesija.Any(e => e.Id == id);
         }
+
+        [Authorize(Roles = "Administrator,Employee")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EndSession(int id)
+        {
+            var sesija = await _context.Sesija.FindAsync(id);
+
+            if (sesija == null)
+            {
+                return NotFound();
+            }
+
+            sesija.Status = StatusSesije.Zavrsena;
+            sesija.VrijemeZavrsetka = DateTime.Now;
+
+            int pointsToAdd = 10;
+
+            var loyalty = await _context.LoyaltyProgram
+                .FirstOrDefaultAsync(l => l.KorisnikId == sesija.KorisnikId);
+
+            if (loyalty == null)
+            {
+                loyalty = new LoyaltyProgram
+                {
+                    KorisnikId = sesija.KorisnikId,
+                    UkupniBodovi = pointsToAdd,
+                    PopustPoBodu = 0.10
+                };
+
+                _context.LoyaltyProgram.Add(loyalty);
+            }
+            else
+            {
+                loyalty.UkupniBodovi += pointsToAdd;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

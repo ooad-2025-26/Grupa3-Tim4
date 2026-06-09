@@ -130,6 +130,16 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
         </div>
 
     </div>
+
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-6">
+            <div class="card p-3 text-center">
+                <h4>Loyalty Points</h4>
+                <p>Your current points:</p>
+                <h2>@ViewBag.LoyaltyPoints</h2>
+            </div>
+        </div>
+    </div>
 }
 else
 {

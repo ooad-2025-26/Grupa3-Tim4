@@ -39,7 +39,11 @@ namespace Aplikacija.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Korisnik.ToListAsync());
+            var korisnici = await _context.Korisnik.ToListAsync();
+
+            ViewBag.LoyaltyPrograms = await _context.LoyaltyProgram.ToListAsync();
+
+            return View(korisnici);
         }
 
         // GET: Korisnik/Details/5
@@ -166,6 +170,60 @@ namespace Aplikacija.Controllers
             if (korisnik != null)
             {
                 _context.Korisnik.Remove(korisnik);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddLoyaltyPoints(string korisnikId, int points)
+        {
+            if (points <= 0)
+                return RedirectToAction(nameof(Index));
+
+            var loyalty = await _context.LoyaltyProgram
+                .FirstOrDefaultAsync(l => l.KorisnikId == korisnikId);
+
+            if (loyalty == null)
+            {
+                loyalty = new LoyaltyProgram
+                {
+                    KorisnikId = korisnikId,
+                    UkupniBodovi = points,
+                    PopustPoBodu = 0.04
+                };
+
+                _context.LoyaltyProgram.Add(loyalty);
+            }
+            else
+            {
+                loyalty.UkupniBodovi += points;
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Administrator,Employee")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveLoyaltyPoints(string korisnikId, int points)
+        {
+            if (points <= 0)
+                return RedirectToAction(nameof(Index));
+
+            var loyalty = await _context.LoyaltyProgram
+                .FirstOrDefaultAsync(l => l.KorisnikId == korisnikId);
+
+            if (loyalty != null)
+            {
+                loyalty.UkupniBodovi -= points;
+
+                if (loyalty.UkupniBodovi < 0)
+                    loyalty.UkupniBodovi = 0;
             }
 
             await _context.SaveChangesAsync();
