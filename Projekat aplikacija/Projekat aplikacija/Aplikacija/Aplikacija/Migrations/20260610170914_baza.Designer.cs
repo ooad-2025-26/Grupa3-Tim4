@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aplikacija.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260609172757_migracija")]
-    partial class migracija
+    [Migration("20260610170914_baza")]
+    partial class baza
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

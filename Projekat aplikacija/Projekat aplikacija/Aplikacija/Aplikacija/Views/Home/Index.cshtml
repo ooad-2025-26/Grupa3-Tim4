@@ -54,6 +54,69 @@
         </div>
 
     </div>
+
+    @if (ViewBag.PendingUsers != null && ViewBag.PendingUsers.Count > 0)
+    {
+        <div class="card p-3 mb-4">
+            <h4>Pending user requests</h4>
+            <p>Approve or reject registered users and assign them a role.</p>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Approve</th>
+                        <th>Reject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in ViewBag.PendingUsers)
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+
+                            <form asp-controller="Home" asp-action="ApproveUser" method="post">
+                                <input type="hidden" name="userId" value="@user.Id" />
+
+                                <td>
+                                    <select name="role" class="form-select">
+                                        <option value="User">User</option>
+                                        <option value="Employee">Employee</option>
+                                        <option value="Administrator">Administrator</option>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <button type="submit" class="btn btn-success">
+                                        Approve
+                                    </button>
+                                </td>
+                            </form>
+
+                            <td>
+                                <form asp-controller="Home" asp-action="RejectUser" method="post">
+                                    <input type="hidden" name="userId" value="@user.Id" />
+
+                                    <button type="submit" class="btn btn-danger">
+                                        Reject
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No pending user requests.
+        </div>
+    }
+
+   
 }
 else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Employee"))
 {
@@ -139,6 +202,13 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
                 <h2>@ViewBag.LoyaltyPoints</h2>
             </div>
         </div>
+    </div>
+}
+else if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div class="alert alert-warning text-center">
+        <h4>Your account is waiting for administrator approval.</h4>
+        <p>Please wait until an administrator approves your account.</p>
     </div>
 }
 else
