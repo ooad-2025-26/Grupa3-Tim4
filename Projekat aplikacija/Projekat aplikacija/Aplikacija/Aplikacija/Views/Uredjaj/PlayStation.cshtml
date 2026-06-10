@@ -3,22 +3,27 @@
 *@
 @model IEnumerable<Aplikacija.Models.PlayStation>
 
+
 @{
     ViewData["Title"] = "PlayStation Devices";
 }
 
 <h1>PlayStation Devices</h1>
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create">Add PlayStation</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Add PlayStation</a>
-</p>
-
+<th>Akcije</th>
 <table class="table">
     <thead>
         <tr>
             <th>Naziv</th>
             <th>Cijena po satu</th>
             <th>Status</th>
+            <th>Akcije</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +33,16 @@
                 <td>@item.Naziv</td>
                 <td>@item.CijenaPoSatu</td>
                 <td>@item.Status</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    }
+
+                    <a asp-action="PrijaviKvar" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Prijavi kvar</a>
+                </td>
             </tr>
         }
     </tbody>

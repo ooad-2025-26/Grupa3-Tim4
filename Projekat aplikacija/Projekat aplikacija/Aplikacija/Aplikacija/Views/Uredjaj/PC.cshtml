@@ -8,17 +8,20 @@
 }
 
 <h1>PC Devices</h1>
-
-<p>
-    <a asp-action="Create">Add PC</a>
-</p>
-
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create">Add PC</a>
+    </p>
+}
+<th>Akcije</th>
 <table class="table">
     <thead>
         <tr>
             <th>Naziv</th>
             <th>Cijena po satu</th>
             <th>Status</th>
+            <th>Akcije</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +31,16 @@
                 <td>@item.Naziv</td>
                 <td>@item.CijenaPoSatu</td>
                 <td>@item.Status</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    }
+
+                    <a asp-action="PrijaviKvar" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Prijavi kvar</a>
+                </td>
             </tr>
         }
     </tbody>

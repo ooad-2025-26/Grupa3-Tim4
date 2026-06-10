@@ -1,0 +1,22 @@
+﻿@model Aplikacija.Models.Uredjaj
+
+@{
+    ViewData["Title"] = "Prijavi kvar";
+}
+
+<h1>Prijavi kvar</h1>
+
+<p>Uređaj ID: @Model.Id</p>
+<p>Trenutni status: @Model.Status</p>
+
+<form asp-action="PrijaviKvar" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div class="form-group mb-3">
+        <label>Opis kvara</label>
+        <input name="opis" class="form-control" required minlength="5" maxlength="50" />
+    </div>
+
+    <button type="submit" class="btn btn-danger">Označi kao neispravan</button>
+    <a asp-action="Index" class="btn btn-secondary">Nazad</a>
+</form>

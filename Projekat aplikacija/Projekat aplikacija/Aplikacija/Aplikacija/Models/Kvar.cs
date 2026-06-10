@@ -24,8 +24,8 @@ namespace Aplikacija.Models
         public Uredjaj Uredjaj { get; set; }
 
         [ForeignKey("Sesija")]
-        public int SesijaId { get; set; }
-        public Sesija Sesija { get; set; }
+        public int? SesijaId { get; set; }
+        public Sesija? Sesija { get; set; }
         public int GetId() => Id;
         public string GetOpis() => Opis;
     }

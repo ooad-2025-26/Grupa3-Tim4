@@ -165,6 +165,49 @@ namespace Aplikacija.Controllers
             return View(uredjaj);
         }
 
+        // GET: Uredjaj/PrijaviKvar/5
+        [Authorize(Roles = "Administrator,Employee")]
+        public async Task<IActionResult> PrijaviKvar(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var uredjaj = await _context.Uredjaj.FindAsync(id);
+
+            if (uredjaj == null)
+                return NotFound();
+
+            return View(uredjaj);
+        }
+
+        // POST: Uredjaj/PrijaviKvar/5
+        [Authorize(Roles = "Administrator,Employee")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PrijaviKvar(int id, string opis)
+        {
+            var uredjaj = await _context.Uredjaj.FindAsync(id);
+
+            if (uredjaj == null)
+                return NotFound();
+
+            uredjaj.Status = StatusUredjaja.Neispravan;
+
+            Kvar kvar = new Kvar
+            {
+                Opis = opis,
+                Status = StatusKvara.Prijavljen, // ako ti se enum drugačije zove, promijeni ovo
+                UredjajId = id
+            };
+
+            _context.Kvar.Add(kvar);
+            _context.Uredjaj.Update(uredjaj);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: Uredjaj/Delete/5
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)

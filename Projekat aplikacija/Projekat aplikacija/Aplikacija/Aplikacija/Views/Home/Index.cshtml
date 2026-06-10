@@ -6,6 +6,12 @@
 {
     <h2>Administrator Panel</h2>
 
+    <a asp-controller="Home"
+           asp-action="UcitajTakmicenja"
+           class="btn btn-success mb-3">
+        Load competitions
+    </a>
+
     <div class="row">
 
         <div class="col-md-4 mb-3">
@@ -179,6 +185,33 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
 {
     <h2>User Panel</h2>
 
+    @if (ViewBag.Takmicenja != null && ViewBag.Takmicenja.Count > 0)
+    {
+        <div class="card p-3 mb-4">
+            <h3>Upcoming Gaming Tournaments</h3>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Game</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in ViewBag.Takmicenja)
+                    {
+                        <tr>
+                            <td>@t.Naziv</td>
+                            <td>@t.Igra</td>
+                            <td>@t.Datum.ToString("dd.MM.yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
     <div class="row justify-content-center">
 
         <div class="col-md-6 mb-3">
@@ -218,4 +251,31 @@ else
     <p>
         Welcome to the Gaming Center System.
     </p>
+
+    @if (ViewBag.Takmicenja != null && ViewBag.Takmicenja.Count > 0)
+    {
+        <div class="card p-3 mb-4">
+            <h3>Upcoming Gaming Tournaments</h3>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Game</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in ViewBag.Takmicenja)
+                    {
+                        <tr>
+                            <td>@t.Naziv</td>
+                            <td>@t.Igra</td>
+                            <td>@t.Datum.ToString("dd.MM.yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 }
