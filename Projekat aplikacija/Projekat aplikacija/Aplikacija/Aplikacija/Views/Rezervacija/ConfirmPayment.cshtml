@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Confirm Payment";
+
+    DateTime datum = ViewBag.Datum;
+    string selectedHours = ViewBag.SelectedHours;
+    string deviceType = ViewBag.DeviceType;
+    string paymentMethod = ViewBag.PaymentMethod;
+    double totalPrice = ViewBag.TotalPrice;
+}
+
+<h2>Confirm Payment</h2>
+
+<div class="card p-3" style="max-width: 500px;">
+    <p>
+        Device type: <strong>@deviceType</strong><br />
+        Date: <strong>@datum.ToString("yyyy-MM-dd")</strong><br />
+        Selected hours: <strong>@selectedHours</strong><br />
+        Payment method: <strong>@paymentMethod</strong><br />
+        Total amount: <strong>@totalPrice.ToString("0.00") KM</strong>
+    </p>
+
+    <form asp-action="ConfirmPayment" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="datum" value="@datum.ToString("yyyy-MM-dd")" />
+        <input type="hidden" name="selectedHours" value="@selectedHours" />
+        <input type="hidden" name="deviceType" value="@deviceType" />
+        <input type="hidden" name="paymentMethod" value="@paymentMethod" />
+        <input type="hidden" name="totalPrice" value="@totalPrice" />
+
+        @if (paymentMethod == "Card")
+        {
+            <div class="form-group mb-3">
+                <label>Card number</label>
+                <input class="form-control" placeholder="Enter card number" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label>CVV</label>
+                <input class="form-control" placeholder="CVV" required />
+            </div>
+        }
+
+        <button type="submit" class="btn btn-success">
+            Confirm Payment and Create Reservation
+        </button>
+
+        <a asp-action="UserCreate" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>

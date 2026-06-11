@@ -32,26 +32,47 @@
             </th>
             <th>Loyalty Points</th>
             <th>Manage Points</th>
+            <th>Actions</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            var loyalty = loyaltyPrograms?.FirstOrDefault(l => l.KorisnikId == item.Id);
+            int points = loyalty != null ? loyalty.UkupniBodovi : 0;
+
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.Ime)</td>
+                <td>@Html.DisplayFor(modelItem => item.Prezime)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.ClanarinaAktivna)</td>
+
+                <td>@points</td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.Ime)
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <form asp-action="AddLoyaltyPoints" method="post" class="mb-2">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="korisnikId" value="@item.Id" />
+                            <input type="number" name="points" min="1" class="form-control mb-1" placeholder="Points to add" />
+                            <button type="submit" class="btn btn-success btn-sm">Add</button>
+                        </form>
+                    }
+
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Employee"))
+                    {
+                        <form asp-action="RemoveLoyaltyPoints" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="korisnikId" value="@item.Id" />
+                            <input type="number" name="points" min="1" class="form-control mb-1" placeholder="Points to remove" />
+                            <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+                        </form>
+                    }
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prezime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClanarinaAktivna)
-                </td>
-                <td>
+
+                <td class="text-end">
                     @if (User.IsInRole("Administrator"))
                     {
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
@@ -65,36 +86,6 @@
                     {
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                     }
-                    @{
-                        var loyalty = loyaltyPrograms?.FirstOrDefault(l => l.KorisnikId == item.Id);
-                        int points = loyalty != null ? loyalty.UkupniBodovi : 0;
-                    }
-
-                    <td>
-                        @points
-                    </td>
-
-                    <td>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            <form asp-action="AddLoyaltyPoints" method="post" class="mb-2">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="korisnikId" value="@item.Id" />
-                                <input type="number" name="points" min="1" class="form-control mb-1" placeholder="Points to add" />
-                                <button type="submit" class="btn btn-success btn-sm">Add</button>
-                            </form>
-                        }
-
-                        @if (User.IsInRole("Administrator") || User.IsInRole("Employee"))
-                        {
-                            <form asp-action="RemoveLoyaltyPoints" method="post">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="korisnikId" value="@item.Id" />
-                                <input type="number" name="points" min="1" class="form-control mb-1" placeholder="Points to remove" />
-                                <button type="submit" class="btn btn-warning btn-sm">Remove</button>
-                            </form>
-                        }
-                    </td>
                 </td>
             </tr>
         }

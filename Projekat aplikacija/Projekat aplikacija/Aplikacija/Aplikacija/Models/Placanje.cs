@@ -21,5 +21,14 @@ namespace Aplikacija.Models
         [ForeignKey("Sesija")]
         public int SesijaId { get; set; }
         public Sesija Sesija { get; set; }
+
+        [ForeignKey("Rezervacija")]
+        public int RezervacijaId { get; set; }
+        public Rezervacija Rezervacija { get; set; }
+
+        [Required]
+        public string MetodaPlacanja { get; set; }
+
+        public DateTime DatumPlacanja { get; set; }
     }
 }

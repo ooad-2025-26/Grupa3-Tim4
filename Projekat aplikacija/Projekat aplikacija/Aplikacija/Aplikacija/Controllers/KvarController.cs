@@ -68,8 +68,18 @@ namespace Aplikacija.Controllers
         {
             if (ModelState.IsValid)
             {
+                kvar.Status = StatusKvara.Prijavljen;
+
+                var uredjaj = await _context.Uredjaj.FindAsync(kvar.UredjajId);
+
+                if (uredjaj != null)
+                {
+                    uredjaj.Status = StatusUredjaja.Neispravan;
+                }
+
                 _context.Add(kvar);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UredjajId"] = new SelectList(_context.Uredjaj, "Id", "Id", kvar.UredjajId);
@@ -164,6 +174,32 @@ namespace Aplikacija.Controllers
             }
 
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RijesiKvar(int id)
+        {
+            var kvar = await _context.Kvar
+                .Include(k => k.Uredjaj)
+                .FirstOrDefaultAsync(k => k.Id == id);
+
+            if (kvar == null)
+            {
+                return NotFound();
+            }
+
+            kvar.Status = StatusKvara.Otklonjen;
+
+            if (kvar.Uredjaj != null)
+            {
+                kvar.Uredjaj.Status = StatusUredjaja.Slobodan;
+            }
+
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

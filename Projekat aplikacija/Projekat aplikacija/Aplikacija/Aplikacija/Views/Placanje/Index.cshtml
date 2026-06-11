@@ -1,41 +1,74 @@
 ﻿@model IEnumerable<Aplikacija.Models.Placanje>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Payment History";
 }
 
-<h1>Index</h1>
+<h1>Payment History</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Iznos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Korisnik)
-            </th>
-            <th></th>
+            <th>Amount</th>
+            <th>Payment Method</th>
+            <th>Payment Date</th>
+            <th>User</th>
+            <th>Reservation</th>
+            <th>Session</th>
+            <th class="text-end">Actions</th>
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Iznos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Korisnik.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Iznos.ToString("0.00") KM</td>
+                <td>@item.MetodaPlacanja</td>
+                <td>@item.DatumPlacanja.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@item.Korisnik?.Email</td>
+
+                <td>
+                    @if (item.Rezervacija != null)
+                    {
+                        <span>
+                            @item.Rezervacija.VrijemeOd.ToString("dd.MM.yyyy HH:mm")
+                            -
+                            @item.Rezervacija.VrijemeDo.ToString("HH:mm")
+                        </span>
+                    }
+                    else
+                    {
+                        <span>No reservation</span>
+                    }
+                </td>
+
+                <td>
+                    @if (item.Sesija != null)
+                    {
+                        <span>
+                            @item.Sesija.VrijemePocetka.ToString("dd.MM.yyyy HH:mm")
+                        </span>
+                    }
+                    else
+                    {
+                        <span>Not started</span>
+                    }
+                </td>
+
+                <td class="text-end">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -262,5 +262,34 @@ namespace Aplikacija.Controllers
         {
             return View(await _context.XBox.ToListAsync());
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> VratiUUpotrebu(int id, string returnAction)
+        {
+            var uredjaj = await _context.Uredjaj.FindAsync(id);
+
+            if (uredjaj == null)
+            {
+                return NotFound();
+            }
+
+            uredjaj.Status = StatusUredjaja.Slobodan;
+
+            var kvar = await _context.Kvar
+                .Where(k => k.UredjajId == id && k.Status != StatusKvara.Otklonjen)
+                .OrderByDescending(k => k.Id)
+                .FirstOrDefaultAsync();
+
+            if (kvar != null)
+            {
+                kvar.Status = StatusKvara.Otklonjen;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(returnAction);
+        }
     }
 }

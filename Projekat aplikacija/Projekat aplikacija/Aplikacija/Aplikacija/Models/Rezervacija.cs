@@ -32,6 +32,7 @@
         public int UredjajId { get; set; }
         public Uredjaj Uredjaj { get; set; }
 
+        public Placanje? Placanje { get; set; }
         public int GetId() => Id;
     }
 }

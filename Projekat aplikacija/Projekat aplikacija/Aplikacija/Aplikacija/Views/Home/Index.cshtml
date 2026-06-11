@@ -6,59 +6,102 @@
 {
     <h2>Administrator Panel</h2>
 
-    <a asp-controller="Home"
-           asp-action="UcitajTakmicenja"
-           class="btn btn-success mb-3">
-        Load competitions
-    </a>
 
     <div class="row">
 
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h4>Users</h4>
-                <p>Manage user accounts, view user sessions, and review payment history.</p>
+        <div class="row">
 
-                <a asp-controller="Korisnik" asp-action="Index" class="btn btn-primary mb-2">
-                    View Users
-                </a>
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 h-100">
+                    <h4>Users</h4>
+                    <p>Manage users, roles, memberships and loyalty points.</p>
 
-                <a asp-controller="Korisnik" asp-action="Create" class="btn btn-outline-primary">
-                    Add User
-                </a>
+                    <a asp-controller="Korisnik" asp-action="Index" class="btn btn-primary mb-2">
+                        View Users
+                    </a>
+
+                    <a asp-controller="Korisnik" asp-action="Create" class="btn btn-outline-primary">
+                        Add User
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h4>Reservations</h4>
-                <p>View, create, and manage reservations.</p>
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 h-100">
+                    <h4>Reservations</h4>
+                    <p>View, create and manage user reservations.</p>
 
-                <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-primary mb-2">
-                    View Reservations
-                </a>
+                    <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-primary mb-2">
+                        View Reservations
+                    </a>
 
-                <a asp-controller="Rezervacija" asp-action="Create" class="btn btn-outline-primary">
-                    Add Reservation
-                </a>
+                    <a asp-controller="Rezervacija" asp-action="Create" class="btn btn-outline-primary">
+                        Add Reservation
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h4>Devices</h4>
-                <p>Manage devices and monitor device issues and maintenance status.</p>
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 h-100">
+                    <h4>Devices</h4>
+                    <p>Manage gaming devices and device availability.</p>
 
-                <a asp-controller="Uredjaj" asp-action="Index" class="btn btn-primary mb-2">
-                    View Devices
-                </a>
+                    <a asp-controller="Uredjaj" asp-action="Index" class="btn btn-primary mb-2">
+                        View Devices
+                    </a>
 
-                <a asp-controller="Uredjaj" asp-action="Create" class="btn btn-outline-primary">
-                    Add Device
-                </a>
+                    <a asp-controller="Uredjaj" asp-action="Create" class="btn btn-outline-primary">
+                        Add Device
+                    </a>
+                </div>
             </div>
-        </div>
 
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 h-100">
+                    <h4>Sessions</h4>
+                    <p>View session history and start new user sessions.</p>
+
+                    <a asp-controller="Sesija" asp-action="Index" class="btn btn-primary mb-2">
+                        View Session History
+                    </a>
+
+                    <a asp-controller="Sesija" asp-action="Create" class="btn btn-outline-primary">
+                        Start Session
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 h-100">
+                    <h4>Payments</h4>
+                    <p>Review payment history and payment methods.</p>
+
+                    <a asp-controller="Placanje" asp-action="Index" class="btn btn-primary mb-2">
+                        View Payment History
+                    </a>
+
+                    <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-outline-primary">
+                        Reservation Payments
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card p-3 h-100">
+                    <h4>Competitions</h4>
+                    <p>View tournaments and load competitions from the external system.</p>
+
+                    <a asp-controller="Takmicenje" asp-action="Index" class="btn btn-primary mb-2">
+                        View Competitions
+                    </a>
+
+                    <a asp-controller="Home" asp-action="UcitajTakmicenja" class="btn btn-success">
+                        Load Competitions
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     @if (ViewBag.PendingUsers != null && ViewBag.PendingUsers.Count > 0)

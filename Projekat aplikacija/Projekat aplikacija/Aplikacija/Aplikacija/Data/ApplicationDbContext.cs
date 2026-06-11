@@ -76,7 +76,23 @@ public class ApplicationDbContext : IdentityDbContext<Korisnik>
             .HasForeignKey(s => s.TakmicenjeId)
             .OnDelete(DeleteBehavior.NoAction);
 
+        modelBuilder.Entity<Placanje>()
+    .HasOne(p => p.Rezervacija)
+    .WithOne(r => r.Placanje)
+    .HasForeignKey<Placanje>(p => p.RezervacijaId)
+    .OnDelete(DeleteBehavior.NoAction);
 
+        modelBuilder.Entity<Placanje>()
+            .HasOne(p => p.Sesija)
+            .WithMany(s => s.Placanja)
+            .HasForeignKey(p => p.SesijaId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<Placanje>()
+            .HasOne(p => p.Korisnik)
+            .WithMany()
+            .HasForeignKey(p => p.KorisnikId)
+            .OnDelete(DeleteBehavior.NoAction);
         // ENUM konverzije
         modelBuilder.Entity<Rezervacija>()
             .Property(r => r.Status)

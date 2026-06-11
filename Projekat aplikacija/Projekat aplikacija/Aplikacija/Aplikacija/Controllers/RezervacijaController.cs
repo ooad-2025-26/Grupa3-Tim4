@@ -231,6 +231,68 @@ namespace Aplikacija.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UserCreate(DateTime datum, string selectedHours, string deviceType, string paymentMethod)
         {
+            double cijenaPoSatu = 0;
+
+            if (deviceType == "PC")
+                cijenaPoSatu = await _context.PC.Select(x => x.CijenaPoSatu).FirstOrDefaultAsync();
+            else if (deviceType == "PlayStation")
+                cijenaPoSatu = await _context.PlayStation.Select(x => x.CijenaPoSatu).FirstOrDefaultAsync();
+            else if (deviceType == "XBox")
+                cijenaPoSatu = await _context.XBox.Select(x => x.CijenaPoSatu).FirstOrDefaultAsync();
+
+            int brojSati = selectedHours.Split(',').Count();
+            double totalPrice = brojSati * cijenaPoSatu;
+
+            ViewBag.Datum = datum;
+            ViewBag.SelectedHours = selectedHours;
+            ViewBag.DeviceType = deviceType;
+            ViewBag.PaymentMethod = paymentMethod;
+            ViewBag.TotalPrice = totalPrice;
+
+            return View("ConfirmPayment");
+        }
+
+        [Authorize(Roles = "Employee")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> StartSession(int id)
+        {
+            var rezervacija = await _context.Rezervacija
+                .Include(r => r.Korisnik)
+                .Include(r => r.Uredjaj)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (rezervacija == null)
+                return NotFound();
+
+            var sesija = new Sesija
+            {
+                VrijemePocetka = DateTime.Now,
+                VrijemeZavrsetka = rezervacija.VrijemeDo,
+                Status = StatusSesije.Aktivna, // promijeni ako se enum drugačije zove
+                KorisnikId = rezervacija.KorisnikId,
+                UredjajId = rezervacija.UredjajId
+            };
+
+            _context.Sesija.Add(sesija);
+
+            rezervacija.Status = StatusRezervacije.Aktivna; // ili Pokrenuta ako imaš takav status
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "User")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmPayment(
+    DateTime datum,
+    string selectedHours,
+    string deviceType,
+    string paymentMethod,
+    double totalPrice)
+        {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var sati = selectedHours
@@ -316,42 +378,23 @@ namespace Aplikacija.Controllers
                 };
 
                 _context.Rezervacija.Add(rezervacija);
+                await _context.SaveChangesAsync();
+
+                var placanje = new Placanje
+                {
+                    Iznos = totalPrice / sati.Count,
+                    MetodaPlacanja = paymentMethod,
+                    DatumPlacanja = DateTime.Now,
+                    KorisnikId = userId,
+                    RezervacijaId = rezervacija.Id
+                };
+
+                _context.Placanje.Add(placanje);
             }
 
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Home");
-        }
-
-        [Authorize(Roles = "Employee")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> StartSession(int id)
-        {
-            var rezervacija = await _context.Rezervacija
-                .Include(r => r.Korisnik)
-                .Include(r => r.Uredjaj)
-                .FirstOrDefaultAsync(r => r.Id == id);
-
-            if (rezervacija == null)
-                return NotFound();
-
-            var sesija = new Sesija
-            {
-                VrijemePocetka = DateTime.Now,
-                VrijemeZavrsetka = rezervacija.VrijemeDo,
-                Status = StatusSesije.Aktivna, // promijeni ako se enum drugačije zove
-                KorisnikId = rezervacija.KorisnikId,
-                UredjajId = rezervacija.UredjajId
-            };
-
-            _context.Sesija.Add(sesija);
-
-            rezervacija.Status = StatusRezervacije.Aktivna; // ili Pokrenuta ako imaš takav status
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
         }
 
 

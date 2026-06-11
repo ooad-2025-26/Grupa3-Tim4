@@ -35,7 +35,7 @@ namespace Aplikacija.Models
         [ForeignKey("Takmicenje")]
         public int? TakmicenjeId { get; set; }
         public Takmicenje? Takmicenje { get; set; }
-
+        public ICollection<Placanje>? Placanja { get; set; }
         public int GetId() => Id;
         public DateTime GetVrijemePocetka() => VrijemePocetka;
         public StatusSesije GetStatus() => Status;

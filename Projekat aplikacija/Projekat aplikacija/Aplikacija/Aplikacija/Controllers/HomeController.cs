@@ -66,12 +66,22 @@ namespace Aplikacija.Controllers
                 ViewBag.LoyaltyPoints = loyalty != null ? loyalty.UkupniBodovi : 0;
             }
 
-            
+
+
+            var proslaTakmicenja = await _context.Takmicenje
+    .Where(t => t.Datum < DateTime.Today)
+    .ToListAsync();
+
+            if (proslaTakmicenja.Any())
+            {
+                _context.Takmicenje.RemoveRange(proslaTakmicenja);
+                await _context.SaveChangesAsync();
+            }
 
             var takmicenja = await _context.Takmicenje
-    .OrderBy(t => t.Datum)
-    .Take(5)
-    .ToListAsync();
+                .Where(t => t.Datum >= DateTime.Today)
+                .OrderBy(t => t.Datum)
+                .ToListAsync();
 
             ViewBag.Takmicenja = takmicenja;
 
@@ -85,6 +95,17 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UcitajTakmicenja()
         {
+
+            var proslaTakmicenja = await _context.Takmicenje
+        .Where(t => t.Datum < DateTime.Today)
+        .ToListAsync();
+
+            if (proslaTakmicenja.Any())
+            {
+                _context.Takmicenje.RemoveRange(proslaTakmicenja);
+                await _context.SaveChangesAsync();
+            }
+
             string apiUrl = _configuration["PandaScore:ApiUrl"];
             string token = _configuration["PandaScore:Token"];
 

@@ -27,8 +27,12 @@ namespace Aplikacija.Controllers
         // GET: Placanje
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Placanje.Include(p => p.Korisnik);
-            return View(await applicationDbContext.ToListAsync());
+            var placanja = _context.Placanje
+                .Include(p => p.Korisnik)
+                .Include(p => p.Rezervacija)
+                .Include(p => p.Sesija);
+
+            return View(await placanja.ToListAsync());
         }
 
         // GET: Placanje/Details/5
@@ -41,7 +45,10 @@ namespace Aplikacija.Controllers
 
             var placanje = await _context.Placanje
                 .Include(p => p.Korisnik)
+                .Include(p => p.Rezervacija)
+                .Include(p => p.Sesija)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (placanje == null)
             {
                 return NotFound();

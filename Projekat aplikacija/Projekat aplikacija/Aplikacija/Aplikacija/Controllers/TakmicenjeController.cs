@@ -35,7 +35,22 @@ namespace Aplikacija.Controllers
         // GET: Takmicenje
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Takmicenje.ToListAsync());
+            var proslaTakmicenja = await _context.Takmicenje
+                .Where(t => t.Datum.Date < DateTime.Today)
+                .ToListAsync();
+
+            if (proslaTakmicenja.Any())
+            {
+                _context.Takmicenje.RemoveRange(proslaTakmicenja);
+                await _context.SaveChangesAsync();
+            }
+
+            var takmicenja = await _context.Takmicenje
+                .Where(t => t.Datum.Date >= DateTime.Today)
+                .OrderBy(t => t.Datum)
+                .ToListAsync();
+
+            return View(takmicenja);
         }
 
         // GET: Takmicenje/Details/5
@@ -176,6 +191,17 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UcitajIzVanjskogSistema()
         {
+
+            var proslaTakmicenja = await _context.Takmicenje
+        .Where(t => t.Datum < DateTime.Today)
+        .ToListAsync();
+
+            if (proslaTakmicenja.Any())
+            {
+                _context.Takmicenje.RemoveRange(proslaTakmicenja);
+                await _context.SaveChangesAsync();
+            }
+
             string apiUrl = _configuration["PandaScore:ApiUrl"];
             string token = _configuration["PandaScore:Token"];
 

@@ -16,14 +16,13 @@
     </p>
 }
 
-<th>Akcije</th>
 <table class="table">
     <thead>
         <tr>
-            <th>Naziv</th>
-            <th>Cijena po satu</th>
+            <th>Name</th>
+            <th>Price per Hour</th>
             <th>Status</th>
-            <th>Akcije</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +31,7 @@
             <tr>
                 <td>@item.Naziv</td>
                 <td>@item.CijenaPoSatu</td>
-                <td>@item.Status</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
 
@@ -41,8 +40,33 @@
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
                     }
 
-                    <a asp-action="PrijaviKvar" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Prijavi kvar</a>
+                    @if (item.Status == StatusUredjaja.Neispravan)
+                    {
+                        <form asp-controller="Uredjaj"
+                              asp-action="VratiUUpotrebu"
+                              method="post"
+                              style="display:inline;">
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="hidden" name="returnAction" value="PlayStation" />
+
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Return to Service
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-action="PrijaviKvar"
+                               asp-route-id="@item.Id"
+                               class="btn btn-danger btn-sm">
+                            Report Issue
+                        </a>
+                    }
                 </td>
+
+
             </tr>
         }
     </tbody>
