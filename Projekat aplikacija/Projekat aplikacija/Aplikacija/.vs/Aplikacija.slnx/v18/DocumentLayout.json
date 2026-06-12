@@ -3,6 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1004.site4now.net/db_aca921_gamehub/db_aca921_gamehub_admin/SqlTable/dbo.AspNetUserRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1004.site4now.net/db_aca921_gamehub/db_aca921_gamehub_admin/SqlTable/dbo.AspNetRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetUserRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1004.site4now.net/db_aca921_gamehub/db_aca921_gamehub_admin/SqlTable/dbo.Korisnik.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.Korisnik.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260612092740_BazaPodataka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Aplikacija\\Migrations\\20260612092740_BazaPodataka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\views\\rezervacija\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\views\\rezervacija\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -315,20 +341,11 @@
       "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.Korisnik.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\models\\takmi\u010Denje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\models\\takmi\u010Denje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetUserRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca73a_bazagame/db_aca73a_bazagame_admin/SqlTable/dbo.AspNetRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetRoles.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -361,46 +378,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\areas\\identity\\pages\\account\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260610170914_baza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260610170914_baza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260610224942_sesija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260610224942_sesija.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260610210603_vanjskisistem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260610210603_vanjskisistem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260610203115_takmicenja2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260610203115_takmicenja2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260610202958_takmicenja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260610202958_takmicenja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260611110939_placanje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260611110939_placanje.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260611234948_narudzba.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260611234948_narudzba.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260611204714_anonimnigost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260611204714_anonimnigost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260611203629_sesijaikorisnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260611203629_sesijaikorisnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|c:\\users\\korisnik\\desktop\\grupa3-tim4\\projekat aplikacija\\projekat aplikacija\\aplikacija\\aplikacija\\migrations\\20260611191835_nacinplacanja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3CDEBE79-107F-751F-7E93-0880075468DD}|Aplikacija\\Aplikacija.csproj|solutionrelative:aplikacija\\migrations\\20260611191835_nacinplacanja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -410,7 +387,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 65,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -442,7 +419,63 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 4,
+              "Title": "dbo.Korisnik [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1004.site4now.net/db_aca921_gamehub/db_aca921_gamehub_admin/SqlTable/dbo.Korisnik.sql",
+              "ToolTip": "dbo.Korisnik [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-06-12T09:33:13.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dbo.AspNetRoles [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1004.site4now.net/db_aca921_gamehub/db_aca921_gamehub_admin/SqlTable/dbo.AspNetRoles.sql",
+              "ToolTip": "dbo.AspNetRoles [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-06-12T09:31:58.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dbo.AspNetUserRoles [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1004.site4now.net/db_aca921_gamehub/db_aca921_gamehub_admin/SqlTable/dbo.AspNetUserRoles.sql",
+              "ToolTip": "dbo.AspNetUserRoles [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-06-12T09:31:28.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20260612092740_BazaPodataka.cs",
+              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260612092740_BazaPodataka.cs",
+              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260612092740_BazaPodataka.cs",
+              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260612092740_BazaPodataka.cs",
+              "RelativeToolTip": "Aplikacija\\Migrations\\20260612092740_BazaPodataka.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T09:27:40.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\appsettings.json",
+              "RelativeDocumentMoniker": "Aplikacija\\appsettings.json",
+              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\appsettings.json",
+              "RelativeToolTip": "Aplikacija\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAACOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-12T09:26:21.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
               "Title": "ChangePassword.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml.cs",
@@ -450,24 +483,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml.cs",
               "ViewState": "AgIAAEAAAAAAAAAAAADwvxcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-12T07:50:43.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-12T07:50:43.912Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
-              "Title": "20260611234948_narudzba.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611234948_narudzba.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260611234948_narudzba.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611234948_narudzba.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260611234948_narudzba.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T23:49:49.075Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 26,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Narudzba\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Narudzba\\Index.cshtml",
@@ -475,12 +495,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Narudzba\\Index.cshtml",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T23:48:57.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T23:48:57.81Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 43,
               "Title": "TipNarudzbe.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\TipNarudzbe.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\TipNarudzbe.cs",
@@ -492,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 42,
               "Title": "Narud\u017Eba.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Narud\u017Eba.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Narud\u017Eba.cs",
@@ -504,7 +523,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 45,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Placanje\\Delete.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Placanje\\Delete.cshtml",
@@ -516,7 +535,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 48,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Placanje\\Details.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Placanje\\Details.cshtml",
@@ -528,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 47,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Placanje\\Edit.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Placanje\\Edit.cshtml",
@@ -540,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 51,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Sesija\\Delete.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Sesija\\Delete.cshtml",
@@ -552,7 +571,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 52,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Sesija\\Details.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Sesija\\Details.cshtml",
@@ -564,7 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 56,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\Details.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\Details.cshtml",
@@ -576,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 54,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\Edit.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\Edit.cshtml",
@@ -588,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 60,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\Delete.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\Delete.cshtml",
@@ -600,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 61,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\Details.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\Details.cshtml",
@@ -612,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\Edit.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\Edit.cshtml",
@@ -620,12 +639,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Rezervacija\\Edit.cshtml",
               "ViewState": "AgIAACUAAAAAAAAAAAAwwEAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T22:25:01.2Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T22:25:01.2Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 23,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Korisnik\\Delete.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Korisnik\\Delete.cshtml",
@@ -633,12 +651,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Korisnik\\Delete.cshtml",
               "ViewState": "AgIAADYAAAAAAAAAAAAwwFEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T22:08:33.304Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T22:08:33.304Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 24,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Korisnik\\Details.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Korisnik\\Details.cshtml",
@@ -646,12 +663,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Korisnik\\Details.cshtml",
               "ViewState": "AgIAACwAAAAAAAAAAAAwwEcAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T22:08:23.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T22:08:23.179Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 25,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Korisnik\\Edit.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Korisnik\\Edit.cshtml",
@@ -659,12 +675,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Korisnik\\Edit.cshtml",
               "ViewState": "AgIAACkAAAAAAAAAAAAwwDkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T22:08:13.461Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T22:08:13.461Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 53,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Sesija\\Edit.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Sesija\\Edit.cshtml",
@@ -676,31 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
-              "Title": "20260611204714_AnonimniGost.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611204714_AnonimniGost.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260611204714_AnonimniGost.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611204714_AnonimniGost.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260611204714_AnonimniGost.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T20:47:14.627Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 99,
-              "Title": "20260611203629_SesijaIKorisnik.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611203629_SesijaIKorisnik.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260611203629_SesijaIKorisnik.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611203629_SesijaIKorisnik.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260611203629_SesijaIKorisnik.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T20:36:29.232Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 41,
               "Title": "StatusSesije.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\StatusSesije.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\StatusSesije.cs",
@@ -712,19 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
-              "Title": "20260611191835_NacinPlacanja.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611191835_NacinPlacanja.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260611191835_NacinPlacanja.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611191835_NacinPlacanja.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260611191835_NacinPlacanja.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T19:18:35.605Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 73,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Takmicenje\\Delete.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Takmicenje\\Delete.cshtml",
@@ -736,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 74,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Takmicenje\\Create.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Takmicenje\\Create.cshtml",
@@ -748,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Placanje\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Placanje\\Index.cshtml",
@@ -756,24 +735,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Placanje\\Index.cshtml",
               "ViewState": "AgIAADgAAAAAAAAAAAAwwFMAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T11:14:10.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T11:14:10.858Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
-              "Title": "20260611110939_placanje.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611110939_placanje.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260611110939_placanje.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611110939_placanje.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260611110939_placanje.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-11T11:09:39.814Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 78,
               "Title": "20260611110617_placanje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260611110617_placanje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260611110617_placanje.cs",
@@ -785,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "ConfirmPayment.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\ConfirmPayment.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\ConfirmPayment.cshtml",
@@ -793,12 +759,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Rezervacija\\ConfirmPayment.cshtml",
               "ViewState": "AgIAACkAAAAAAAAAAIAwwDcAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-11T11:01:32.83Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-11T11:01:32.83Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 64,
               "Title": "StrategijaPlacanja.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\StrategijaPlacanja.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\StrategijaPlacanja.cs",
@@ -810,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 63,
               "Title": "GotovinskoPla\u0107anje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\GotovinskoPla\u0107anje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\GotovinskoPla\u0107anje.cs",
@@ -822,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 80,
               "Title": "KarticnoPlacanje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\KarticnoPlacanje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\KarticnoPlacanje.cs",
@@ -834,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 65,
               "Title": "Placanje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Placanje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Placanje.cs",
@@ -846,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 83,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Kvar\\Create.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Kvar\\Create.cshtml",
@@ -858,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 81,
               "Title": "PrijaviKvar.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\PrijaviKvar.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\PrijaviKvar.cshtml",
@@ -870,19 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
-              "Title": "20260610224942_sesija.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610224942_sesija.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260610224942_sesija.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610224942_sesija.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260610224942_sesija.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T22:49:42.724Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 44,
               "Title": "StatusKvara.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\StatusKvara.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\StatusKvara.cs",
@@ -894,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 71,
               "Title": "Kvar.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Kvar.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Kvar.cs",
@@ -906,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 76,
               "Title": "PandaScoreMatch.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PandaScoreMatch.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\PandaScoreMatch.cs",
@@ -918,19 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
-              "Title": "20260610210603_vanjskiSistem.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610210603_vanjskiSistem.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260610210603_vanjskiSistem.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610210603_vanjskiSistem.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260610210603_vanjskiSistem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T21:06:03.723Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Takmicenje\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Takmicenje\\Index.cshtml",
@@ -938,36 +879,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Takmicenje\\Index.cshtml",
               "ViewState": "AgIAACoAAAAAAAAAAAAwwEUAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-10T20:57:22.06Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-10T20:57:22.06Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
-              "Title": "20260610203115_takmicenja2.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610203115_takmicenja2.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260610203115_takmicenja2.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610203115_takmicenja2.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260610203115_takmicenja2.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T20:31:15.564Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 95,
-              "Title": "20260610202958_takmicenja.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610202958_takmicenja.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260610202958_takmicenja.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610202958_takmicenja.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260610202958_takmicenja.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T20:29:59.019Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 86,
               "Title": "Takmi\u010Denje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Takmi\u010Denje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Takmi\u010Denje.cs",
@@ -979,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 75,
               "Title": "SistemZaTakmi\u010Denje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\SistemZaTakmi\u010Denje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\SistemZaTakmi\u010Denje.cs",
@@ -991,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 3,
               "Title": "dbo.AspNetUserRoles.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetUserRoles.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetUserRoles.sql",
@@ -1000,7 +916,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 1,
               "Title": "dbo.AspNetRoles.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetRoles.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.AspNetRoles.sql",
@@ -1009,7 +925,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 5,
               "Title": "dbo.Korisnik.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.Korisnik.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca810_gamehub/db_aca810_gamehub_admin/SqlTable/dbo.Korisnik.sql",
@@ -1018,19 +934,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
-              "Title": "20260610170914_baza.cs",
-              "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610170914_baza.cs",
-              "RelativeDocumentMoniker": "Aplikacija\\Migrations\\20260610170914_baza.cs",
-              "ToolTip": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Migrations\\20260610170914_baza.cs",
-              "RelativeToolTip": "Aplikacija\\Migrations\\20260610170914_baza.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-10T17:09:14.155Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 79,
               "Title": "LoyaltyPlacanje.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\LoyaltyPlacanje.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\LoyaltyPlacanje.cs",
@@ -1042,7 +946,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 89,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
@@ -1054,7 +958,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 91,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Home\\Privacy.cshtml",
@@ -1066,7 +970,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 27,
               "Title": "LoyaltyProgram.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\LoyaltyProgram.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\LoyaltyProgram.cs",
@@ -1074,12 +978,11 @@
               "RelativeToolTip": "Aplikacija\\Models\\LoyaltyProgram.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAowAwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-09T21:39:38.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T21:39:38.977Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 49,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\Create.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\Create.cshtml",
@@ -1091,7 +994,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Sesija\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Sesija\\Index.cshtml",
@@ -1099,12 +1002,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Sesija\\Index.cshtml",
               "ViewState": "AgIAAFsAAAAAAAAAAAAwwHYAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-09T19:53:38.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T19:53:38.615Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 84,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\Create.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\Create.cshtml",
@@ -1116,7 +1018,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 87,
               "Title": "dbo.AspNetRoles.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca73a_bazagame/db_aca73a_bazagame_admin/SqlTable/dbo.AspNetRoles.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/SQL1001.site4now.net/db_aca73a_bazagame/db_aca73a_bazagame_admin/SqlTable/dbo.AspNetRoles.sql",
@@ -1125,7 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 62,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Sesija\\Create.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Sesija\\Create.cshtml",
@@ -1137,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\Index.cshtml",
@@ -1150,7 +1052,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "UserCreate.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Rezervacija\\UserCreate.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Rezervacija\\UserCreate.cshtml",
@@ -1158,12 +1060,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Rezervacija\\UserCreate.cshtml",
               "ViewState": "AgIAAMAAAAAAAAAAAAAwwNsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-09T12:03:05.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T12:03:05.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 66,
               "Title": "Rezervacija.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Rezervacija.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Rezervacija.cs",
@@ -1175,7 +1076,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 69,
               "Title": "StatusRezervacije.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\StatusRezervacije.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\StatusRezervacije.cs",
@@ -1187,7 +1088,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "XBox.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\XBox.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\XBox.cshtml",
@@ -1195,12 +1096,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Uredjaj\\XBox.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-09T11:32:37.691Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T11:32:37.691Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "PlayStation.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\PlayStation.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\PlayStation.cshtml",
@@ -1208,12 +1108,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Uredjaj\\PlayStation.cshtml",
               "ViewState": "AgIAAE4AAAAAAAAAAAAwwGkAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-09T11:30:03.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T11:30:03.501Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "PC.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\PC.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\PC.cshtml",
@@ -1221,12 +1120,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Uredjaj\\PC.cshtml",
               "ViewState": "AgIAAE4AAAAAAAAAAAAwwGkAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-09T11:28:49.454Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T11:28:49.454Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 77,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Data\\ApplicationDbContext.cs",
@@ -1238,7 +1136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 59,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Uredjaj\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Uredjaj\\Index.cshtml",
@@ -1250,7 +1148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 92,
               "Title": "Xbox.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Xbox.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Xbox.cs",
@@ -1262,7 +1160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 57,
               "Title": "PC.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PC.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\PC.cs",
@@ -1274,7 +1172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 93,
               "Title": "PlayStation.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\PlayStation.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\PlayStation.cs",
@@ -1286,7 +1184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 67,
               "Title": "StatusUredjaja.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\StatusUredjaja.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\StatusUredjaja.cs",
@@ -1298,7 +1196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 58,
               "Title": "Uredjaj.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Uredjaj.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Uredjaj.cs",
@@ -1310,7 +1208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 68,
               "Title": "Sesija.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Sesija.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Sesija.cs",
@@ -1322,7 +1220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Korisnik\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Korisnik\\Index.cshtml",
@@ -1330,12 +1228,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Korisnik\\Index.cshtml",
               "ViewState": "AgIAAGEAAAAAAAAAAAAwwHwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-08T23:08:19.078Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T23:08:19.078Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 21,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Home\\Index.cshtml",
@@ -1343,12 +1240,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAEsBAAAAAAAAAAAiwF0BAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-08T22:59:38.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T22:59:38.247Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 22,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Korisnik\\Create.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Korisnik\\Create.cshtml",
@@ -1356,12 +1252,11 @@
               "RelativeToolTip": "Aplikacija\\Views\\Korisnik\\Create.cshtml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-08T22:40:07.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T22:40:07.717Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 55,
               "Title": "UredjajController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\UredjajController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\UredjajController.cs",
@@ -1373,7 +1268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 72,
               "Title": "TakmicenjeController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\TakmicenjeController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\TakmicenjeController.cs",
@@ -1385,7 +1280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 50,
               "Title": "SesijaController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\SesijaController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\SesijaController.cs",
@@ -1397,7 +1292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "RezervacijaController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\RezervacijaController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\RezervacijaController.cs",
@@ -1405,12 +1300,11 @@
               "RelativeToolTip": "Aplikacija\\Controllers\\RezervacijaController.cs",
               "ViewState": "AgIAAAECAAAAAAAAAAAwwBUCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T16:50:26.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:50:26.695Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 46,
               "Title": "PlacanjeController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\PlacanjeController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\PlacanjeController.cs",
@@ -1422,7 +1316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 40,
               "Title": "NarudzbaController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\NarudzbaController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\NarudzbaController.cs",
@@ -1430,12 +1324,11 @@
               "RelativeToolTip": "Aplikacija\\Controllers\\NarudzbaController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T16:44:58.483Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:44:58.483Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 82,
               "Title": "KvarController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\KvarController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\KvarController.cs",
@@ -1447,7 +1340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 39,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\HomeController.cs",
@@ -1455,12 +1348,11 @@
               "RelativeToolTip": "Aplikacija\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAwwGAAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T16:34:38.022Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:34:38.022Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 34,
               "Title": "ResetPassword.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
@@ -1468,12 +1360,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T16:14:56.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:14:56.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 36,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -1481,12 +1372,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-08T16:14:51.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:14:51.658Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 35,
               "Title": "Logout.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
@@ -1494,12 +1384,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T16:14:14.333Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:14:14.333Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 95,
               "Title": "Logout.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
@@ -1511,7 +1400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 29,
               "Title": "Login.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
@@ -1519,12 +1408,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAIwBkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T16:08:06.999Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:08:06.999Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 28,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -1532,12 +1420,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "ViewState": "AgIAAB4AAAAAAAAAAAAwwC4AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-08T16:08:04.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T16:08:04.229Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 32,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
@@ -1545,12 +1432,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "ViewState": "AgIAAH4AAAAAAAAAAAAwwJMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T14:44:12.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T14:44:12.606Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 70,
               "Title": "Korisnik.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Models\\Korisnik.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Models\\Korisnik.cs",
@@ -1562,7 +1448,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "KorisnikController.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Controllers\\KorisnikController.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Controllers\\KorisnikController.cs",
@@ -1570,12 +1456,11 @@
               "RelativeToolTip": "Aplikacija\\Controllers\\KorisnikController.cs",
               "ViewState": "AgIAAJQAAAAAAAAAAAAIwIMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T13:56:59.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T13:56:59.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 94,
               "Title": "_LoginPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Shared\\_LoginPartial.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Shared\\_LoginPartial.cshtml",
@@ -1587,7 +1472,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 88,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Views\\Shared\\_Layout.cshtml",
@@ -1599,7 +1484,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 31,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -1607,12 +1492,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "ViewState": "AgIAACMAAAAAAAAAAAAwwD4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-26T08:09:33.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T08:09:33.676Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 90,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
@@ -1624,7 +1508,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 37,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
@@ -1632,12 +1516,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-26T08:06:25.267Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T08:06:25.267Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 38,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
@@ -1645,12 +1528,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-26T08:06:23.932Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T08:06:23.932Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 33,
               "Title": "_ManageNav.cshtml",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
               "RelativeDocumentMoniker": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
@@ -1658,12 +1540,11 @@
               "RelativeToolTip": "Aplikacija\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-26T08:06:20.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T08:06:20.772Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 85,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Korisnik\\Desktop\\Grupa3-Tim4\\Projekat aplikacija\\Projekat aplikacija\\Aplikacija\\Aplikacija\\Program.cs",
               "RelativeDocumentMoniker": "Aplikacija\\Program.cs",
