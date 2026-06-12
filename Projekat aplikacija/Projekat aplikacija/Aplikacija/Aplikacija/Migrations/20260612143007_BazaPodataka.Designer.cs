@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aplikacija.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260612092740_BazaPodataka")]
+    [Migration("20260612143007_BazaPodataka")]
     partial class BazaPodataka
     {
         /// <inheritdoc />
