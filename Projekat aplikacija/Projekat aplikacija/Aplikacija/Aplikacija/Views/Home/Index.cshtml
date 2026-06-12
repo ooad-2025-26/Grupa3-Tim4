@@ -80,9 +80,7 @@
                         View Payment History
                     </a>
 
-                    <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-outline-primary">
-                        Reservation Payments
-                    </a>
+                    
                 </div>
             </div>
 
@@ -107,16 +105,16 @@
     @if (ViewBag.PendingUsers != null && ViewBag.PendingUsers.Count > 0)
     {
         <div class="card p-3 mb-4">
-            <h4>Pending user requests</h4>
-            <p>Approve or reject registered users and assign them a role.</p>
+            <h4>Pending membership requests</h4>
+            <p>Approve or reject registered users for the loyalty program.</p>
 
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Email</th>
-                        <th>Role</th>
-                        <th>Approve</th>
-                        <th>Reject</th>
+                        <th>Membership status</th>
+                        <th>Approve membership</th>
+                        <th>Reject user</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,31 +122,28 @@
                     {
                         <tr>
                             <td>@user.Email</td>
+                            <td>
+                                <span class="badge bg-warning text-dark">
+                                    Pending approval
+                                </span>
+                            </td>
 
-                            <form asp-controller="Home" asp-action="ApproveUser" method="post">
-                                <input type="hidden" name="userId" value="@user.Id" />
+                            <td>
+                                <form asp-controller="Home" asp-action="ApproveUser" method="post">
+                                    <input type="hidden" name="userId" value="@user.Id" />
 
-                                <td>
-                                    <select name="role" class="form-select">
-                                        <option value="User">User</option>
-                                        <option value="Employee">Employee</option>
-                                        <option value="Administrator">Administrator</option>
-                                    </select>
-                                </td>
-
-                                <td>
                                     <button type="submit" class="btn btn-success">
-                                        Approve
+                                        Approve Membership
                                     </button>
-                                </td>
-                            </form>
+                                </form>
+                            </td>
 
                             <td>
                                 <form asp-controller="Home" asp-action="RejectUser" method="post">
                                     <input type="hidden" name="userId" value="@user.Id" />
 
                                     <button type="submit" class="btn btn-danger">
-                                        Reject
+                                        Reject User
                                     </button>
                                 </form>
                             </td>
@@ -161,19 +156,21 @@
     else
     {
         <div class="alert alert-info">
-            No pending user requests.
+            No pending membership requests.
         </div>
     }
+    
 
    
 }
 else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Employee"))
 {
     <h2>Employee Panel</h2>
+
     <div class="row">
 
         <div class="col-md-4 mb-3">
-            <div class="card p-3">
+            <div class="card p-3 h-100">
                 <h4>Users</h4>
                 <p>View registered users.</p>
 
@@ -184,7 +181,7 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
         </div>
 
         <div class="col-md-4 mb-3">
-            <div class="card p-3">
+            <div class="card p-3 h-100">
                 <h4>Reservations</h4>
                 <p>View reservations and start user sessions.</p>
 
@@ -195,9 +192,9 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
         </div>
 
         <div class="col-md-4 mb-3">
-            <div class="card p-3">
+            <div class="card p-3 h-100">
                 <h4>Devices</h4>
-                <p>View devices and their status.</p>
+                <p>View devices and report device issues.</p>
 
                 <a asp-controller="Uredjaj" asp-action="Index" class="btn btn-success">
                     View Devices
@@ -207,22 +204,113 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
 
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center my-4">
 
-        <div class="col-md-4 mb-3">
-            <div class="card p-3 text-center">
-                <h4>Sessions</h4>
-                <p>Start a new session for a user.</p>
+        <div class="col-md-6">
+            <div class="card p-4 text-center shadow">
+                <h3>Session Management</h3>
+
+                <p>
+                    Start new sessions and review active or completed sessions.
+                </p>
 
                 <a asp-controller="Sesija"
                        asp-action="Create"
-                       class="btn btn-warning">
+                       class="btn btn-warning btn-lg mb-3 w-100">
                     Start Session
+                </a>
+
+                <a asp-controller="Sesija"
+                       asp-action="Index"
+                       class="btn btn-primary w-100">
+                    View Sessions
                 </a>
             </div>
         </div>
 
     </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <h4>Payments</h4>
+
+                <p>Review payment history.</p>
+
+                <a asp-controller="Placanje"
+                       asp-action="Index"
+                       class="btn btn-success">
+                    View Payments
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    @if (ViewBag.AktivneNarudzbe != null && ViewBag.AktivneNarudzbe.Count > 0)
+    {
+        <div class="card p-3 mb-4">
+            <h4>Active Orders and Messages</h4>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>User</th>
+                        <th>Device</th>
+                        <th>Type</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var n in ViewBag.AktivneNarudzbe)
+                    {
+                        <tr>
+                            <td>@n.VrijemeSlanja.ToString("HH:mm")</td>
+                            <td>@n.Korisnik?.Email</td>
+                            <td>
+                                @if (n.Sesija?.Uredjaj is PC pc)
+                                {
+                                    <span>@pc.Naziv</span>
+                                }
+                                else if (n.Sesija?.Uredjaj is PlayStation ps)
+                                {
+                                    <span>@ps.Naziv</span>
+                                }
+                                else if (n.Sesija?.Uredjaj is XBox xbox)
+                                {
+                                    <span>@xbox.Naziv</span>
+                                }
+                                else
+                                {
+                                    <span>@n.Sesija?.Uredjaj?.TipUredjaja</span>
+                                }
+                            </td>
+                            <td>@n.Tip</td>
+                            <td>
+                                @if (n.Tip == TipNarudzbe.Narudzba)
+                                {
+                                    <span>@n.Proizvod</span>
+                                }
+                                else
+                                {
+                                    <span>@n.Poruka</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else if (User.IsInRole("Employee"))
+    {
+        <div class="alert alert-info">
+            No active orders or messages.
+        </div>
+    }
 }
 else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("User"))
 {
@@ -260,11 +348,58 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
         <div class="col-md-6 mb-3">
             <div class="card p-3 text-center">
                 <h4>Reservations</h4>
-                <p>Create a new reservation.</p>
+                <p>Create and manage your reservations.</p>
 
                 <a asp-controller="Rezervacija" asp-action="UserCreate" class="btn btn-info mb-2">
                     Add Reservation
                 </a>
+
+                <a asp-controller="Rezervacija" asp-action="Index" class="btn btn-primary">
+                    My Reservations
+                </a>
+
+                @if (ViewBag.ImaAktivnuSesiju == true)
+                {
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-md-6">
+                            <div class="card p-3 text-center">
+                                <h4>Order or Message</h4>
+                                <p>You can send an order or message while your session is active.</p>
+
+                                <form asp-controller="Narudzba" asp-action="QuickSend" method="post">
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-group mb-3 text-start">
+                                        <label>Type</label>
+                                        <select name="tip" class="form-control">
+                                            <option value="Narudzba">Order</option>
+                                            <option value="Poruka">Message</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group mb-3 text-start">
+                                        <label>Order</label>
+                                        <input name="proizvod"
+                                               class="form-control"
+                                               placeholder="Example: Coffee, Coca-Cola..." />
+                                    </div>
+
+                                    <div class="form-group mb-3 text-start">
+                                        <label>Message</label>
+                                        <textarea name="poruka"
+                                                  class="form-control"
+                                                  rows="3"
+                                                  placeholder="Example: I need help with my device."></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-warning w-100">
+                                        Send
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
 
@@ -273,18 +408,27 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
     <div class="row justify-content-center mb-3">
         <div class="col-md-6">
             <div class="card p-3 text-center">
-                <h4>Loyalty Points</h4>
-                <p>Your current points:</p>
-                <h2>@ViewBag.LoyaltyPoints</h2>
+                <h4>Loyalty Membership</h4>
+
+                @if (ViewBag.ClanarinaAktivna == true)
+                {
+                    <div class="alert alert-success">
+                        Your membership has been approved.
+                    </div>
+
+                    <p>Your current loyalty points:</p>
+                    <h2>@ViewBag.LoyaltyPoints</h2>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        Your membership has not been approved by an administrator yet.
+                    </div>
+
+                    <p>You currently do not have loyalty points.</p>
+                }
             </div>
         </div>
-    </div>
-}
-else if (User.Identity != null && User.Identity.IsAuthenticated)
-{
-    <div class="alert alert-warning text-center">
-        <h4>Your account is waiting for administrator approval.</h4>
-        <p>Please wait until an administrator approves your account.</p>
     </div>
 }
 else

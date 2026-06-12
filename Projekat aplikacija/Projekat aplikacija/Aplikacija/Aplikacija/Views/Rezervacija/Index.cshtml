@@ -25,8 +25,9 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Korisnik)
+                User Email
             </th>
+            <th>Device</th>
             <th></th>
         </tr>
     </thead>
@@ -43,8 +44,9 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Korisnik.Id)
+                    @item.Korisnik?.Email
             </td>
+                <td>@item.Uredjaj.TipUredjaja</td>
                 <td>
 
                     @if (User.IsInRole("Administrator"))
@@ -75,6 +77,31 @@
                                 Start Session
                             </button>
                         </form>
+                    }
+
+                    @if (User.IsInRole("User"))
+                    {
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                        @if (item.Status == StatusRezervacije.Aktivna && item.VrijemeOd > DateTime.Now)
+                        {
+                            <span>|</span>
+
+                            <form asp-action="CancelReservation"
+                                  method="post"
+                                  style="display:inline;">
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden"
+                                       name="id"
+                                       value="@item.Id" />
+
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm">
+                                    Cancel
+                                </button>
+                            </form>
+                        }
                     }
 
                 </td>

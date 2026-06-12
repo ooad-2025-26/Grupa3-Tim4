@@ -1,49 +1,65 @@
 ﻿@model Aplikacija.Models.Rezervacija
+@using Aplikacija.Models
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Reservation";
 }
 
-<h1>Edit</h1>
+<h2>Edit Reservation</h2>
 
-<h4>Rezervacija</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="VrijemeOd" class="control-label"></label>
-                <input asp-for="VrijemeOd" class="form-control" />
-                <span asp-validation-for="VrijemeOd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VrijemeDo" class="control-label"></label>
-                <input asp-for="VrijemeDo" class="form-control" />
-                <span asp-validation-for="VrijemeDo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="KorisnikId" class="control-label"></label>
-                <select asp-for="KorisnikId" class="form-control" asp-items="ViewBag.KorisnikId"></select>
-                <span asp-validation-for="KorisnikId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<div class="card p-4" style="max-width: 650px;">
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
 
-<div>
-    <a asp-action="Index">Back to List</a>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label asp-for="VrijemeOd" class="control-label">Start time</label>
+            <input asp-for="VrijemeOd" class="form-control" />
+            <span asp-validation-for="VrijemeOd" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="VrijemeDo" class="control-label">End time</label>
+            <input asp-for="VrijemeDo" class="form-control" />
+            <span asp-validation-for="VrijemeDo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Status" class="control-label">Status</label>
+            <select asp-for="Status"
+                    class="form-control"
+                    asp-items="Html.GetEnumSelectList<StatusRezervacije>()">
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="KorisnikId" class="control-label">User</label>
+            <select asp-for="KorisnikId" class="form-control" asp-items="ViewBag.KorisnikId"></select>
+            <span asp-validation-for="KorisnikId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="UredjajId" class="control-label">Device</label>
+            <select asp-for="UredjajId" class="form-control" asp-items="ViewBag.UredjajId"></select>
+            <span asp-validation-for="UredjajId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary ms-2">
+            Back to List
+        </a>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

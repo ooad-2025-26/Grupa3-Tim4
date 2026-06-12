@@ -27,10 +27,29 @@ namespace Aplikacija.Controllers
         // GET: Sesija
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Sesija.Include(s => s.Uredjaj);
+            var sada = DateTime.Now;
+
+            var istekleSesije = await _context.Sesija
+                .Where(s => s.Status == StatusSesije.Aktivna
+                         && s.VrijemeZavrsetka <= sada)
+                .ToListAsync();
+
+            foreach (var sesija in istekleSesije)
+            {
+                sesija.Status = StatusSesije.Zavrsena;
+            }
+
+            if (istekleSesije.Any())
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            var applicationDbContext = _context.Sesija
+                .Include(s => s.Uredjaj)
+                .Include(s => s.Korisnik);
+
             return View(await applicationDbContext.ToListAsync());
         }
-
         // GET: Sesija/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -40,7 +59,7 @@ namespace Aplikacija.Controllers
             }
 
             var sesija = await _context.Sesija
-                .Include(s => s.Uredjaj)
+                .Include(s => s.Uredjaj).Include(s => s.Korisnik)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sesija == null)
             {
@@ -52,10 +71,52 @@ namespace Aplikacija.Controllers
 
         // GET: Sesija/Create
         [Authorize(Roles = "Administrator,Employee")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["UredjajId"] = new SelectList(_context.Uredjaj, "Id", "Id");
-            return View();
+            var sada = DateTime.Now;
+
+            var aktivniUredjaji = await _context.Sesija
+                .Where(s => s.Status == StatusSesije.Aktivna)
+                .Select(s => s.UredjajId)
+                .ToListAsync();
+
+            var rezervacije = await _context.Rezervacija
+                .Include(r => r.Korisnik)
+                .Include(r => r.Uredjaj)
+                .Include(r => r.Placanje)
+                .Where(r => r.Status == StatusRezervacije.Aktivna
+                         && r.VrijemeOd <= sada
+                         && r.VrijemeDo >= sada)
+                .ToListAsync();
+
+            var rezervisaniUredjaji = rezervacije
+                .Select(r => r.UredjajId)
+                .ToList();
+
+            var dostupniUredjaji = await _context.Uredjaj
+                .Where(u => !aktivniUredjaji.Contains(u.Id)
+                         && !rezervisaniUredjaji.Contains(u.Id))
+                .ToListAsync();
+
+            ViewBag.Rezervacije = rezervacije;
+
+            ViewBag.Uredjaji = dostupniUredjaji.Select(u => new
+            {
+                Id = u.Id,
+                Naziv = u.TipUredjaja + " - ID: " + u.Id,
+                CijenaPoSatu =
+        u is PC pc ? pc.CijenaPoSatu :
+        u is PlayStation ps ? ps.CijenaPoSatu :
+        u is XBox xbox ? xbox.CijenaPoSatu : 0
+            }).ToList();
+
+            ViewBag.KorisnikId = new SelectList(
+                await _context.Korisnik.ToListAsync(),
+                "Id",
+                "Email"
+            );
+
+            return View(new Sesija());
         }
 
         // POST: Sesija/Create
@@ -64,16 +125,86 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator,Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VrijemePocetka,VrijemeZavrsetka,Status,UredjajId")] Sesija sesija)
+        public async Task<IActionResult> Create(
+    int? rezervacijaId,
+    int? uredjajId,
+    string? korisnikId,
+    bool anonimniGost,
+    string vrijemeZavrsetkaVrijeme)
         {
-            if (ModelState.IsValid)
+            
+            var sada = DateTime.Now;
+            var vrijemePocetka = DateTime.Now;
+
+            var vrijeme = TimeSpan.Parse(vrijemeZavrsetkaVrijeme);
+
+            var vrijemeZavrsetka = DateTime.Today.Add(vrijeme);
+
+            if (vrijemeZavrsetka <= vrijemePocetka)
             {
-                _context.Add(sesija);
+                ModelState.AddModelError("", "End time must be after start time.");
+            }
+
+            if (rezervacijaId != null)
+            {
+                var rezervacija = await _context.Rezervacija
+                    .Include(r => r.Korisnik)
+                    .Include(r => r.Uredjaj)
+                    .FirstOrDefaultAsync(r => r.Id == rezervacijaId);
+
+                if (rezervacija == null)
+                {
+                    return NotFound();
+                }
+
+                var sesijaIzRezervacije = new Sesija
+                {
+                    VrijemePocetka = vrijemePocetka,
+                    VrijemeZavrsetka = vrijemeZavrsetka,
+                    Status = StatusSesije.Aktivna,
+                    UredjajId = rezervacija.UredjajId,
+                    KorisnikId = rezervacija.KorisnikId,
+                    AnonimniGost = false
+                };
+
+                _context.Sesija.Add(sesijaIzRezervacije);
+
+                rezervacija.Status = StatusRezervacije.Zavrsena;
+
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UredjajId"] = new SelectList(_context.Uredjaj, "Id", "Id", sesija.UredjajId);
-            return View(sesija);
+
+            if (uredjajId == null)
+            {
+                ModelState.AddModelError("", "You must select a device.");
+            }
+
+            if (!anonimniGost && string.IsNullOrEmpty(korisnikId))
+            {
+                ModelState.AddModelError("", "Select a user or mark the guest as anonymous.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Create));
+            }
+
+            var sesija = new Sesija
+            {
+                VrijemePocetka = vrijemePocetka,
+                VrijemeZavrsetka = vrijemeZavrsetka,
+                Status = StatusSesije.Aktivna,
+                UredjajId = uredjajId.Value,
+                KorisnikId = anonimniGost ? null : korisnikId,
+                AnonimniGost = anonimniGost
+            };
+
+            _context.Sesija.Add(sesija);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Sesija/Edit/5
@@ -90,9 +221,28 @@ namespace Aplikacija.Controllers
             {
                 return NotFound();
             }
-            ViewData["UredjajId"] = new SelectList(_context.Uredjaj, "Id", "Id", sesija.UredjajId);
+            ViewData["UredjajId"] = new SelectList(_context.Uredjaj.Select(u => new
+                {
+                    Id = u.Id,
+                    Naziv = u.TipUredjaja + " - ID: " + u.Id
+                }),
+                "Id",
+                "Naziv",
+                sesija.UredjajId
+
+
+            );
+
+            ViewData["KorisnikId"] = new SelectList(
+    _context.Korisnik,
+    "Id",
+    "Email",
+    sesija.KorisnikId
+);
             return View(sesija);
         }
+
+
 
         // POST: Sesija/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -100,7 +250,7 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator,Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,VrijemePocetka,VrijemeZavrsetka,Status,UredjajId")] Sesija sesija)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,VrijemePocetka,VrijemeZavrsetka,Status,UredjajId,KorisnikId,AnonimniGost")] Sesija sesija)
         {
             if (id != sesija.Id)
             {
@@ -111,6 +261,7 @@ namespace Aplikacija.Controllers
             {
                 try
                 {
+                    sesija.AnonimniGost = string.IsNullOrEmpty(sesija.KorisnikId);
                     _context.Update(sesija);
                     await _context.SaveChangesAsync();
                 }
@@ -141,7 +292,7 @@ namespace Aplikacija.Controllers
             }
 
             var sesija = await _context.Sesija
-                .Include(s => s.Uredjaj)
+                .Include(s => s.Uredjaj).Include(s => s.Korisnik)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sesija == null)
             {
@@ -187,25 +338,28 @@ namespace Aplikacija.Controllers
             sesija.Status = StatusSesije.Zavrsena;
             sesija.VrijemeZavrsetka = DateTime.Now;
 
-            int pointsToAdd = 10;
-
-            var loyalty = await _context.LoyaltyProgram
-                .FirstOrDefaultAsync(l => l.KorisnikId == sesija.KorisnikId);
-
-            if (loyalty == null)
+            if (!string.IsNullOrEmpty(sesija.KorisnikId))
             {
-                loyalty = new LoyaltyProgram
+                int pointsToAdd = 10;
+
+                var loyalty = await _context.LoyaltyProgram
+                    .FirstOrDefaultAsync(l => l.KorisnikId == sesija.KorisnikId);
+
+                if (loyalty == null)
                 {
-                    KorisnikId = sesija.KorisnikId,
-                    UkupniBodovi = pointsToAdd,
-                    PopustPoBodu = 0.10
-                };
+                    loyalty = new LoyaltyProgram
+                    {
+                        KorisnikId = sesija.KorisnikId,
+                        UkupniBodovi = pointsToAdd,
+                        PopustPoBodu = 0.10
+                    };
 
-                _context.LoyaltyProgram.Add(loyalty);
-            }
-            else
-            {
-                loyalty.UkupniBodovi += pointsToAdd;
+                    _context.LoyaltyProgram.Add(loyalty);
+                }
+                else
+                {
+                    loyalty.UkupniBodovi += pointsToAdd;
+                }
             }
 
             await _context.SaveChangesAsync();

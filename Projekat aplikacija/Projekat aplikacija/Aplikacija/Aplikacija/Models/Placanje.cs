@@ -19,8 +19,8 @@ namespace Aplikacija.Models
         public Korisnik Korisnik { get; set; }
 
         [ForeignKey("Sesija")]
-        public int SesijaId { get; set; }
-        public Sesija Sesija { get; set; }
+        public int? SesijaId { get; set; }
+        public Sesija? Sesija { get; set; }
 
         [ForeignKey("Rezervacija")]
         public int RezervacijaId { get; set; }

@@ -61,7 +61,7 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id");
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Email");
             return View();
         }
 
@@ -97,7 +97,7 @@ namespace Aplikacija.Controllers
             {
                 return NotFound();
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", placanje.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Email", placanje.KorisnikId);
             return View(placanje);
         }
 
@@ -134,7 +134,7 @@ namespace Aplikacija.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", placanje.KorisnikId);
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Email", placanje.KorisnikId);
             return View(placanje);
         }
 
@@ -164,7 +164,10 @@ namespace Aplikacija.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var placanje = await _context.Placanje.FindAsync(id);
+            var placanje = await _context.Placanje
+    .Include(p => p.Korisnik)
+    .Include(p => p.Rezervacija)
+    .FirstOrDefaultAsync(m => m.Id == id);
             if (placanje != null)
             {
                 _context.Placanje.Remove(placanje);

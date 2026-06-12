@@ -1,20 +1,12 @@
 ﻿using Aplikacija.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Aplikacija.Models;
+using System.Security.Claims;
 
 namespace Aplikacija.Controllers
 {
-    [Authorize(Roles = "Administrator,Employee")]
+    [Authorize]
     public class NarudzbaController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,152 +16,66 @@ namespace Aplikacija.Controllers
             _context = context;
         }
 
-        // GET: Narudzba
+        [Authorize(Roles = "Administrator,Employee")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Narudzba.Include(n => n.Korisnik);
-            return View(await applicationDbContext.ToListAsync());
-        }
-
-        // GET: Narudzba/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var narudzba = await _context.Narudzba
+            var narudzbe = await _context.Narudzba
                 .Include(n => n.Korisnik)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (narudzba == null)
-            {
-                return NotFound();
-            }
+                .Include(n => n.Sesija)
+                    .ThenInclude(s => s.Uredjaj)
+                .OrderByDescending(n => n.VrijemeSlanja)
+                .ToListAsync();
 
-            return View(narudzba);
+            return View(narudzbe);
         }
 
-        // GET: Narudzba/Create
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Create()
-        {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id");
-            return View();
-        }
-
-        // POST: Narudzba/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Proizvod,Cijena,Status,KorisnikId")] Narudzba narudzba)
+        public async Task<IActionResult> QuickSend(TipNarudzbe tip, string? proizvod, string? poruka)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(narudzba);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", narudzba.KorisnikId);
-            return View(narudzba);
-        }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var sada = DateTime.Now;
 
-        // GET: Narudzba/Edit/5
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            var aktivnaSesija = await _context.Sesija
+                .FirstOrDefaultAsync(s => s.KorisnikId == userId
+                                       && s.Status == StatusSesije.Aktivna
+                                       && s.VrijemePocetka <= sada
+                                       && s.VrijemeZavrsetka >= sada);
+
+            if (aktivnaSesija == null)
             {
-                return NotFound();
+                TempData["Greska"] = "You can send orders or messages only during an active session.";
+                return RedirectToAction("Index", "Home");
             }
 
-            var narudzba = await _context.Narudzba.FindAsync(id);
-            if (narudzba == null)
+            if (tip == TipNarudzbe.Narudzba && string.IsNullOrWhiteSpace(proizvod))
             {
-                return NotFound();
-            }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", narudzba.KorisnikId);
-            return View(narudzba);
-        }
-
-        // POST: Narudzba/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Proizvod,Cijena,Status,KorisnikId")] Narudzba narudzba)
-        {
-            if (id != narudzba.Id)
-            {
-                return NotFound();
+                TempData["Greska"] = "Enter what you want to order.";
+                return RedirectToAction("Index", "Home");
             }
 
-            if (ModelState.IsValid)
+            if (tip == TipNarudzbe.Poruka && string.IsNullOrWhiteSpace(poruka))
             {
-                try
-                {
-                    _context.Update(narudzba);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!NarudzbaExists(narudzba.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", narudzba.KorisnikId);
-            return View(narudzba);
-        }
-
-        // GET: Narudzba/Delete/5
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
+                TempData["Greska"] = "Enter a message.";
+                return RedirectToAction("Index", "Home");
             }
 
-            var narudzba = await _context.Narudzba
-                .Include(n => n.Korisnik)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (narudzba == null)
+            var narudzba = new Narudzba
             {
-                return NotFound();
-            }
+                Tip = tip,
+                Proizvod = tip == TipNarudzbe.Narudzba ? proizvod : null,
+                Poruka = tip == TipNarudzbe.Poruka ? poruka : null,
+                VrijemeSlanja = DateTime.Now,
+                KorisnikId = userId,
+                SesijaId = aktivnaSesija.Id
+            };
 
-            return View(narudzba);
-        }
-
-        // POST: Narudzba/Delete/5
-        [Authorize(Roles = "Administrator")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var narudzba = await _context.Narudzba.FindAsync(id);
-            if (narudzba != null)
-            {
-                _context.Narudzba.Remove(narudzba);
-            }
-
+            _context.Narudzba.Add(narudzba);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
-        private bool NarudzbaExists(int id)
-        {
-            return _context.Narudzba.Any(e => e.Id == id);
+            TempData["Poruka"] = "Your request has been sent.";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

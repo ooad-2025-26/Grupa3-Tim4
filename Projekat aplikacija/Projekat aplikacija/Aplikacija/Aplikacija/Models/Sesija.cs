@@ -29,8 +29,10 @@ namespace Aplikacija.Models
         public Uredjaj Uredjaj { get; set; }
 
         [ForeignKey("Korisnik")]
-        public string KorisnikId { get; set; }
-        public Korisnik Korisnik { get; set; }
+        public string? KorisnikId { get; set; }
+        public Korisnik? Korisnik { get; set; }
+
+        public bool AnonimniGost { get; set; }
 
         [ForeignKey("Takmicenje")]
         public int? TakmicenjeId { get; set; }

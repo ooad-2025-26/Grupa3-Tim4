@@ -117,15 +117,29 @@ namespace Aplikacija.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var uredjaj = await _context.Uredjaj.FindAsync(id);
+
             if (uredjaj == null)
-            {
                 return NotFound();
+
+            if (uredjaj is PC pc)
+            {
+                ViewBag.Naziv = pc.Naziv;
+                ViewBag.CijenaPoSatu = pc.CijenaPoSatu;
             }
+            else if (uredjaj is PlayStation ps)
+            {
+                ViewBag.Naziv = ps.Naziv;
+                ViewBag.CijenaPoSatu = ps.CijenaPoSatu;
+            }
+            else if (uredjaj is XBox xbox)
+            {
+                ViewBag.Naziv = xbox.Naziv;
+                ViewBag.CijenaPoSatu = xbox.CijenaPoSatu;
+            }
+
             return View(uredjaj);
         }
 
@@ -135,34 +149,31 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Status")] Uredjaj uredjaj)
+        public async Task<IActionResult> Edit(int id, StatusUredjaja Status, double CijenaPoSatu)
         {
-            if (id != uredjaj.Id)
-            {
+            var uredjaj = await _context.Uredjaj.FindAsync(id);
+
+            if (uredjaj == null)
                 return NotFound();
+
+            uredjaj.Status = Status;
+
+            if (uredjaj is PC pc)
+            {
+                pc.CijenaPoSatu = CijenaPoSatu;
+            }
+            else if (uredjaj is PlayStation ps)
+            {
+                ps.CijenaPoSatu = CijenaPoSatu;
+            }
+            else if (uredjaj is XBox xbox)
+            {
+                xbox.CijenaPoSatu = CijenaPoSatu;
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(uredjaj);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UredjajExists(uredjaj.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(uredjaj);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Uredjaj/PrijaviKvar/5

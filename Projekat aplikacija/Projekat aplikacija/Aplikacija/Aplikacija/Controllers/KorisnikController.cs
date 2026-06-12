@@ -1,16 +1,17 @@
 ﻿using Aplikacija.Models;
+using Aplikacija.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Aplikacija.Models;
 
 namespace Aplikacija.Controllers
 {
@@ -18,6 +19,7 @@ namespace Aplikacija.Controllers
     public class KorisnikController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<Korisnik> _userManager;
 
         public IActionResult Pocetna()
         {
@@ -29,9 +31,10 @@ namespace Aplikacija.Controllers
 
             return View("UserPanel");
         }
-        public KorisnikController(ApplicationDbContext context)
+        public KorisnikController(ApplicationDbContext context, UserManager<Korisnik> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Korisnik
@@ -61,6 +64,11 @@ namespace Aplikacija.Controllers
                 return NotFound();
             }
 
+            var loyalty = await _context.LoyaltyProgram
+    .FirstOrDefaultAsync(l => l.KorisnikId == korisnik.Id);
+
+            ViewBag.LoyaltyPoints = loyalty?.UkupniBodovi ?? 0;
+
             return View(korisnik);
         }
 
@@ -77,14 +85,30 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ime,Prezime,Email,ClanarinaAktivna")] Korisnik korisnik)
+        public async Task<IActionResult> Create(string ime, string prezime, string email, string password, bool clanarinaAktivna)
         {
-            if (ModelState.IsValid)
+            var korisnik = new Korisnik
             {
-                _context.Add(korisnik);
-                await _context.SaveChangesAsync();
+                Ime = ime,
+                Prezime = prezime,
+                Email = email,
+                UserName = email,
+                ClanarinaAktivna = clanarinaAktivna
+            };
+
+            var result = await _userManager.CreateAsync(korisnik, password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(korisnik, "User");
                 return RedirectToAction(nameof(Index));
             }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+
             return View(korisnik);
         }
 
@@ -111,34 +135,24 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Ime,Prezime,Email,ClanarinaAktivna")] Korisnik korisnik)
+        public async Task<IActionResult> Edit(string id, string ime, string prezime, string email, bool clanarinaAktivna)
         {
-            if (id != korisnik.Id)
+            var korisnik = await _context.Korisnik.FindAsync(id);
+
+            if (korisnik == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(korisnik);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!KorisnikExists(korisnik.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(korisnik);
+            korisnik.Ime = ime;
+            korisnik.Prezime = prezime;
+            korisnik.Email = email;
+            korisnik.UserName = email;
+            korisnik.ClanarinaAktivna = clanarinaAktivna;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Korisnik/Delete/5

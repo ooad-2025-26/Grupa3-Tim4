@@ -10,23 +10,15 @@ namespace Aplikacija.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 50, MinimumLength = 2, ErrorMessage = "Product name must be between 2 and 50 characters long!")]
-        [RegularExpression(@"^[0-9a-zA-ZšđčćžŠĐČĆŽ ]+$", ErrorMessage = "Product can only contain letters, numbers and spaces!")]
-        [DisplayName("Product: ")]
-        public string Proizvod { get; set; }
+        public TipNarudzbe Tip { get; set; }
 
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Order must be between 2 and 100 characters long.")]
+        public string? Proizvod { get; set; }
 
-        [Required]
-        [Range(0.01, 1000000, ErrorMessage = "Price must be greater than 0!")]
-        [DisplayName("Price: ")]
-        public double Cijena { get; set; }
+        [StringLength(300, MinimumLength = 2, ErrorMessage = "Message must be between 2 and 300 characters long.")]
+        public string? Poruka { get; set; }
 
-
-        [Required]
-        [StringLength(maximumLength: 20, MinimumLength = 3, ErrorMessage = "Status must be between 3 and 20 characters long!")]
-        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Status can only contain letters and spaces!")]
-        [DisplayName("Status: ")]
-        public string Status { get; set; }
+        public DateTime VrijemeSlanja { get; set; } = DateTime.Now;
 
         [ForeignKey("Korisnik")]
         public string KorisnikId { get; set; }
@@ -35,7 +27,5 @@ namespace Aplikacija.Models
         [ForeignKey("Sesija")]
         public int SesijaId { get; set; }
         public Sesija Sesija { get; set; }
-
-        public int GetId() => Id;
     }
 }

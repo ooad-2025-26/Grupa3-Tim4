@@ -28,28 +28,51 @@ namespace Aplikacija.Controllers
         // GET: Rezervacija
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Rezervacija
-        .Include(r => r.Korisnik)
-        .Include(r => r.Uredjaj);
 
-            return View(await applicationDbContext.ToListAsync());
+
+            var istekle = await _context.Rezervacija
+    .Where(r => r.Status == StatusRezervacije.Aktivna && r.VrijemeDo < DateTime.Now)
+    .ToListAsync();
+
+            foreach (var r in istekle)
+            {
+                r.Status = StatusRezervacije.Istekla;
+            }
+
+            if (istekle.Any())
+            {
+                await _context.SaveChangesAsync();
+            }
+
+
+            var rezervacije = _context.Rezervacija
+                .Include(r => r.Korisnik)
+                .Include(r => r.Uredjaj)
+                .AsQueryable();
+
+            if (User.IsInRole("User"))
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                rezervacije = rezervacije.Where(r => r.KorisnikId == userId);
+            }
+
+            return View(await rezervacije.ToListAsync());
         }
 
         // GET: Rezervacija/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var rezervacija = await _context.Rezervacija
                 .Include(r => r.Korisnik)
+                .Include(r => r.Uredjaj)
+                .Include(r => r.Placanje)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (rezervacija == null)
-            {
                 return NotFound();
-            }
 
             return View(rezervacija);
         }
@@ -58,7 +81,9 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Email");
+            ViewBag.KorisnikId = new SelectList(_context.Users, "Id", "Email");
+            ViewBag.UredjajId = new SelectList(_context.Uredjaj, "Id", "TipUredjaja");
+
             return View();
         }
 
@@ -68,15 +93,45 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VrijemeOd,VrijemeDo,Status,KorisnikId")] Rezervacija rezervacija)
+        public async Task<IActionResult> Create(Rezervacija rezervacija, string paymentMethod = "Cash")
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rezervacija);
+                _context.Rezervacija.Add(rezervacija);
                 await _context.SaveChangesAsync();
+
+                double cijenaPoSatu = 0;
+
+                var uredjaj = await _context.Uredjaj.FindAsync(rezervacija.UredjajId);
+
+                if (uredjaj is PC pc)
+                    cijenaPoSatu = pc.CijenaPoSatu;
+                else if (uredjaj is PlayStation ps)
+                    cijenaPoSatu = ps.CijenaPoSatu;
+                else if (uredjaj is XBox xbox)
+                    cijenaPoSatu = xbox.CijenaPoSatu;
+
+                var trajanje = rezervacija.VrijemeDo - rezervacija.VrijemeOd;
+                var ukupno = trajanje.TotalHours * cijenaPoSatu;
+
+                var placanje = new Placanje
+                {
+                    Iznos = ukupno,
+                    MetodaPlacanja = paymentMethod,
+                    DatumPlacanja = DateTime.Now,
+                    KorisnikId = rezervacija.KorisnikId,
+                    RezervacijaId = rezervacija.Id
+                };
+
+                _context.Placanje.Add(placanje);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", rezervacija.KorisnikId);
+
+            ViewBag.KorisnikId = new SelectList(_context.Users, "Id", "Email", rezervacija.KorisnikId);
+            ViewBag.UredjajId = new SelectList(_context.Uredjaj, "Id", "TipUredjaja", rezervacija.UredjajId);
+
             return View(rezervacija);
         }
 
@@ -85,16 +140,38 @@ namespace Aplikacija.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var rezervacija = await _context.Rezervacija.FindAsync(id);
+            var rezervacija = await _context.Rezervacija
+                .Include(r => r.Korisnik)
+                .Include(r => r.Uredjaj)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
             if (rezervacija == null)
-            {
                 return NotFound();
-            }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", rezervacija.KorisnikId);
+
+            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Email", rezervacija.KorisnikId);
+
+            ViewData["UredjajId"] = new SelectList(
+                _context.Uredjaj.Select(u => new
+                {
+                    Id = u.Id,
+                    Naziv = u.TipUredjaja + " - ID: " + u.Id
+                }),
+                "Id",
+                "Naziv",
+                rezervacija.UredjajId
+            );
+
+            ViewData["Status"] = new SelectList(
+                Enum.GetValues(typeof(StatusRezervacije))
+                    .Cast<StatusRezervacije>()
+                    .Select(s => new { Id = s, Naziv = s.ToString() }),
+                "Id",
+                "Naziv",
+                rezervacija.Status
+            );
+
             return View(rezervacija);
         }
 
@@ -104,34 +181,29 @@ namespace Aplikacija.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,VrijemeOd,VrijemeDo,Status,KorisnikId")] Rezervacija rezervacija)
+        public async Task<IActionResult> Edit(int id, Rezervacija rezervacija)
         {
             if (id != rezervacija.Id)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(rezervacija);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RezervacijaExists(rezervacija.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                var postojeca = await _context.Rezervacija.FindAsync(id);
+
+                if (postojeca == null)
+                    return NotFound();
+
+                postojeca.VrijemeOd = rezervacija.VrijemeOd;
+                postojeca.VrijemeDo = rezervacija.VrijemeDo;
+                postojeca.Status = rezervacija.Status;
+                postojeca.KorisnikId = rezervacija.KorisnikId;
+                postojeca.UredjajId = rezervacija.UredjajId;
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KorisnikId"] = new SelectList(_context.Korisnik, "Id", "Id", rezervacija.KorisnikId);
+
             return View(rezervacija);
         }
 
@@ -140,17 +212,16 @@ namespace Aplikacija.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var rezervacija = await _context.Rezervacija
                 .Include(r => r.Korisnik)
+                .Include(r => r.Uredjaj)
+                .Include(r => r.Placanje)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (rezervacija == null)
-            {
                 return NotFound();
-            }
 
             return View(rezervacija);
         }
@@ -199,8 +270,9 @@ namespace Aplikacija.Controllers
 
                 int brojZauzetih = await _context.Rezervacija
                     .Where(r => uredjajIds.Contains(r.UredjajId)
-                             && r.VrijemeOd < vrijemeDo
-                             && r.VrijemeDo > vrijemeOd)
+         && r.Status == StatusRezervacije.Aktivna
+         && r.VrijemeOd < vrijemeDo
+         && r.VrijemeDo > vrijemeOd)
                     .CountAsync();
 
                 if (uredjajIds.Count == 0 || brojZauzetih >= uredjajIds.Count)
@@ -293,7 +365,18 @@ namespace Aplikacija.Controllers
     string paymentMethod,
     double totalPrice)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var korisnik = await _context.Korisnik
+                .FirstOrDefaultAsync(k => k.Id == identityUserId || k.Email == User.Identity.Name);
+
+            if (korisnik == null)
+            {
+                TempData["Greska"] = "User was not found in the database.";
+                return RedirectToAction("UserCreate");
+            }
+
+            var userId = korisnik.Id;
 
             var sati = selectedHours
                 .Split(',')
@@ -316,7 +399,14 @@ namespace Aplikacija.Controllers
 
                     foreach (var pc in pcList)
                     {
+                        bool postojiUredjaj = await _context.Uredjaj
+                            .AnyAsync(u => u.Id == pc.Id);
+
+                        if (!postojiUredjaj)
+                            continue;
+
                         bool zauzet = await _context.Rezervacija.AnyAsync(r =>
+                        r.Status == StatusRezervacije.Aktivna &&
                             r.UredjajId == pc.Id &&
                             r.VrijemeOd < vrijemeDo &&
                             r.VrijemeDo > vrijemeOd);
@@ -334,7 +424,14 @@ namespace Aplikacija.Controllers
 
                     foreach (var ps in psList)
                     {
+                        bool postojiUredjaj = await _context.Uredjaj
+                            .AnyAsync(u => u.Id == ps.Id);
+
+                        if (!postojiUredjaj)
+                            continue;
+
                         bool zauzet = await _context.Rezervacija.AnyAsync(r =>
+                        r.Status == StatusRezervacije.Aktivna &&
                             r.UredjajId == ps.Id &&
                             r.VrijemeOd < vrijemeDo &&
                             r.VrijemeDo > vrijemeOd);
@@ -352,7 +449,14 @@ namespace Aplikacija.Controllers
 
                     foreach (var xbox in xboxList)
                     {
+                        bool postojiUredjaj = await _context.Uredjaj
+                            .AnyAsync(u => u.Id == xbox.Id);
+
+                        if (!postojiUredjaj)
+                            continue;
+
                         bool zauzet = await _context.Rezervacija.AnyAsync(r =>
+                        r.Status == StatusRezervacije.Aktivna &&
                             r.UredjajId == xbox.Id &&
                             r.VrijemeOd < vrijemeDo &&
                             r.VrijemeDo > vrijemeOd);
@@ -366,7 +470,10 @@ namespace Aplikacija.Controllers
                 }
 
                 if (slobodanUredjajId == 0)
-                    continue;
+                {
+                    TempData["Greska"] = "No available device was found for the selected time.";
+                    return RedirectToAction("UserCreate");
+                }
 
                 var rezervacija = new Rezervacija
                 {
@@ -377,8 +484,28 @@ namespace Aplikacija.Controllers
                     UredjajId = slobodanUredjajId
                 };
 
+                if (!await _context.Korisnik.AnyAsync(k => k.Id == userId))
+                {
+                    TempData["Greska"] = "User does not exist.";
+                    return RedirectToAction("UserCreate");
+                }
+
+                if (!await _context.Uredjaj.AnyAsync(u => u.Id == slobodanUredjajId))
+                {
+                    TempData["Greska"] = "Device does not exist.";
+                    return RedirectToAction("UserCreate");
+                }
+
                 _context.Rezervacija.Add(rezervacija);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException ex)
+                {
+                    var innerMessage = ex.InnerException?.Message ?? ex.Message;
+                    throw new Exception("SAVE ERROR: " + innerMessage);
+                }
 
                 var placanje = new Placanje
                 {
@@ -395,6 +522,28 @@ namespace Aplikacija.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize(Roles = "User")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelReservation(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var rezervacija = await _context.Rezervacija
+                .FirstOrDefaultAsync(r => r.Id == id && r.KorisnikId == userId);
+
+            if (rezervacija == null)
+                return NotFound();
+
+            if (rezervacija.Status == StatusRezervacije.Aktivna && rezervacija.VrijemeOd > DateTime.Now)
+            {
+                rezervacija.Status = StatusRezervacije.Otkazana;
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
 

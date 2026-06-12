@@ -1,36 +1,72 @@
 ﻿@model Aplikacija.Models.Korisnik
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "User Details";
 }
 
-<h1>Details</h1>
+<div class="container mt-4">
 
-<div>
-    <h4>Korisnik</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClanarinaAktivna)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClanarinaAktivna)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">User Details</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row mb-3">
+                <div class="col-md-3"><strong>First Name</strong></div>
+                <div class="col-md-9">@Model.Ime</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3"><strong>Last Name</strong></div>
+                <div class="col-md-9">@Model.Prezime</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3"><strong>Email</strong></div>
+                <div class="col-md-9">@Model.Email</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3"><strong>Username</strong></div>
+                <div class="col-md-9">@Model.UserName</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3"><strong>Membership</strong></div>
+                <div class="col-md-9">
+                    @if (Model.ClanarinaAktivna)
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactive</span>
+                    }
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3"><strong>Loyalty Points</strong></div>
+                <div class="col-md-9">
+                    <span class="badge bg-warning text-dark">
+                        @(ViewBag.LoyaltyPoints ?? 0) points
+                    </span>
+                </div>
+            </div>
+
+            <hr />
+
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                Edit User
+            </a>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+    </div>
+
 </div>

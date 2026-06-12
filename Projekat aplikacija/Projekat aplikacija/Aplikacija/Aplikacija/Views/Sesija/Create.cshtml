@@ -1,47 +1,178 @@
 ﻿@model Aplikacija.Models.Sesija
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Start Session";
+    var rezervacije = ViewBag.Rezervacije as List<Aplikacija.Models.Rezervacija>;
 }
 
-<h1>Create</h1>
+<h1>Start Session</h1>
 
-<h4>Sesija</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="VrijemePocetka" class="control-label"></label>
-                <input asp-for="VrijemePocetka" class="form-control" />
-                <span asp-validation-for="VrijemePocetka" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VrijemeZavrsetka" class="control-label"></label>
-                <input asp-for="VrijemeZavrsetka" class="form-control" />
-                <span asp-validation-for="VrijemeZavrsetka" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control" aspitems="Html.GetEnumSelectList<StatusSesije>()"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UredjajId" class="control-label"></label>
-                <select asp-for="UredjajId" class ="form-control" asp-items="ViewBag.UredjajId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<h3>Reservations for current time</h3>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@if (rezervacije != null && rezervacije.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Device</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Payment</th>
+                <th>Session time</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in rezervacije)
+            {
+                <tr>
+                    <td>@r.Korisnik.Email</td>
+                    <td>@r.Uredjaj.TipUredjaja - ID: @r.UredjajId</td>
+                    <td>@r.VrijemeOd</td>
+                    <td>@r.VrijemeDo</td>
+                    <td>
+                        @(r.Placanje != null ? r.Placanje.MetodaPlacanja : "Not paid")
+                    </td>
+                    <td>
+                        <form asp-action="Create" method="post">
+                            <input type="hidden" name="rezervacijaId" value="@r.Id" />
+
+                            <label>Session start time</label>
+                            <input type="text"
+                                   class="form-control mb-2"
+                                   value="@DateTime.Now.ToString("dd.MM.yyyy HH:mm")"
+                                   readonly />
+
+                            <label>End</label>
+                            <input type="time"
+                                   name="vrijemeZavrsetkaVrijeme"
+                                   class="form-control"
+                                   step="60"
+                                   lang="en-GB"
+                                   required />
+
+                            <p class="mt-2">
+                                Estimated price: <strong id="estimatedPrice">0.00 KM</strong>
+                            </p>
+
+                            <button type="submit" class="btn btn-success">
+                                Start Session
+                            </button>
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
+else
+{
+    <p>There are no reservations that can be started at the current time.</p>
+}
+
+<hr />
+
+<h3>Session without reservation</h3>
+
+<form asp-action="Create" method="post">
+
+    <div class="form-group mb-3">
+        <label>Session start time</label>
+        <input type="text"
+               class="form-control"
+               value="@DateTime.Now.ToString("dd.MM.yyyy HH:mm")"
+               readonly />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>End time</label>
+        <input type="time"
+               name="vrijemeZavrsetkaVrijeme"
+               class="form-control"
+               required />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Device</label>
+        <select name="uredjajId" id="uredjajId" class="form-control">
+            <option value="">-- Select device --</option>
+
+            @foreach (var u in ViewBag.Uredjaji)
+            {
+                <option value="@u.Id" data-cijena="@u.CijenaPoSatu">
+                    @u.Naziv - @u.CijenaPoSatu KM/hour
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Existing user</label>
+        <select name="korisnikId" class="form-control" asp-items="ViewBag.KorisnikId">
+            <option value="">-- Select user --</option>
+        </select>
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" name="anonimniGost" value="false" class="form-check-input" id="anonimniGost" />
+        <label class="form-check-label" for="anonimniGost">
+            Anonymous guest
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Start Session without Reservation
+    </button>
+</form>
+
+<div class="mt-3">
+    <a asp-action="Index">Back</a>
+</div>
+
+<script>
+    function calculatePrice() {
+        const deviceSelect = document.getElementById("uredjajId");
+        const endTimeInput = document.querySelector("input[name='vrijemeZavrsetkaVrijeme']");
+        const priceOutput = document.getElementById("estimatedPrice");
+
+        if (!deviceSelect || !endTimeInput || !priceOutput) return;
+
+        const selectedOption = deviceSelect.options[deviceSelect.selectedIndex];
+        const pricePerHour = parseFloat(selectedOption.getAttribute("data-cijena"));
+
+        if (isNaN(pricePerHour) || !endTimeInput.value) {
+            priceOutput.innerText = "0.00 KM";
+            return;
+        }
+
+        const now = new Date();
+        const [hours, minutes] = endTimeInput.value.split(":").map(Number);
+
+        const end = new Date();
+        end.setHours(hours);
+        end.setMinutes(minutes);
+        end.setSeconds(0);
+
+        if (end <= now) {
+            priceOutput.innerText = "End time must be in the future";
+            return;
+        }
+
+        const durationHours = (end - now) / (1000 * 60 * 60);
+        const totalPrice = durationHours * pricePerHour;
+
+        priceOutput.innerText = totalPrice.toFixed(2) + " KM";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const deviceSelect = document.getElementById("uredjajId");
+        const endTimeInput = document.querySelector("input[name='vrijemeZavrsetkaVrijeme']");
+
+        if (deviceSelect) deviceSelect.addEventListener("change", calculatePrice);
+        if (endTimeInput) endTimeInput.addEventListener("change", calculatePrice);
+    });
+</script>

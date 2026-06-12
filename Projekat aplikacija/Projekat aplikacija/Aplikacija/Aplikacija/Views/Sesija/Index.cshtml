@@ -21,9 +21,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th>User</th>
             <th>
-                @Html.DisplayNameFor(model => model.Uredjaj)
+                Device
             </th>
+            <th>Price</th>
             <th></th>
         </tr>
     </thead>
@@ -39,20 +41,53 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
+                <td>
+                    @(item.AnonimniGost ? "Anonymous Guest" : item.Korisnik?.Email)
+                </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Uredjaj.Id)
+                    @item.Uredjaj.TipUredjaja
             </td>
+                <td>
+                    @{
+                        double cijenaPoSatu = 0;
+
+                        if (item.Uredjaj is PC pc)
+                        {
+                            cijenaPoSatu = pc.CijenaPoSatu;
+                        }
+                        else if (item.Uredjaj is PlayStation ps)
+                        {
+                            cijenaPoSatu = ps.CijenaPoSatu;
+                        }
+                        else if (item.Uredjaj is XBox xbox)
+                        {
+                            cijenaPoSatu = xbox.CijenaPoSatu;
+                        }
+
+                        var trajanje = item.VrijemeZavrsetka - item.VrijemePocetka;
+                        var cijena = trajanje.TotalHours * cijenaPoSatu;
+                    }
+
+                    @cijena.ToString("0.00") KM
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    <form asp-action="EndSession" method="post" style="display:inline;">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="id" value="@item.Id" />
-                        <button type="submit" class="btn btn-warning">
-                            End Session
-                        </button>
-                    </form>
+                    @if (item.Status == StatusSesije.Aktivna)
+                    {
+                        <form asp-action="EndSession" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-warning">
+                                End Session
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        
+                    }
             </td>
         </tr>
 }

@@ -1,34 +1,51 @@
 ﻿@model Aplikacija.Models.Uredjaj
+@using Aplikacija.Models
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Device";
 }
 
-<h1>Edit</h1>
+<h2>Edit Device</h2>
 
-<h4>Uredjaj</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="card p-4" style="max-width: 600px;">
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="form-group mb-3">
+            <label>Device Type</label>
+            <input value="@Model.TipUredjaja" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Name</label>
+            <input value="@ViewBag.Naziv" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Status</label>
+            <select name="Status"
+                    class="form-control"
+                    asp-items="Html.GetEnumSelectList<StatusUredjaja>()">
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Price per Hour</label>
+            <input type="number"
+                   step="0.01"
+                   name="CijenaPoSatu"
+                   value="@ViewBag.CijenaPoSatu"
+                   class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary ms-2">
+            Back
+        </a>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
