@@ -29,3 +29,23 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.hero-banner {
+    min-height: 280px;
+    background-image: linear-gradient( rgba(0,0,0,0.35), rgba(0,0,0,0.35) ), url('/images/gaming-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+    .hero-banner h1 {
+        font-weight: 700;
+    }
+
+    .hero-banner p {
+        max-width: 600px;
+    }

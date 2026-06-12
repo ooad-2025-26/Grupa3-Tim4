@@ -433,36 +433,79 @@ else if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole
 }
 else
 {
-    <h1>Gaming Center System</h1>
+    <div class="container mt-4">
 
-    <p>
-        Welcome to the Gaming Center System.
-    </p>
 
-    @if (ViewBag.Takmicenja != null && ViewBag.Takmicenja.Count > 0)
-    {
-        <div class="card p-3 mb-4">
-            <h3>Upcoming Gaming Tournaments</h3>
+        <div class="card border-0 shadow-sm mb-4 overflow-hidden">
 
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Game</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var t in ViewBag.Takmicenja)
-                    {
-                        <tr>
-                            <td>@t.Naziv</td>
-                            <td>@t.Igra</td>
-                            <td>@t.Datum.ToString("dd.MM.yyyy")</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="hero-banner text-white p-5">
+
+                <h1 class="display-5 fw-bold">
+                    GameHub Manager
+                </h1>
+
+                <p class="lead">
+                    Welcome to the GameHub management system.
+                    Manage devices, reservations, gaming sessions and tournaments.
+                </p>
+
+                <div>
+                    <a asp-area="Identity"
+                           asp-page="/Account/Register"
+                           class="btn btn-light me-2">
+                        Get Started
+                    </a>
+
+                    <a asp-area="Identity"
+                           asp-page="/Account/Login"
+                           class="btn btn-outline-light">
+                        Login
+                    </a>
+                </div>
+
+            </div>
+
         </div>
-    }
+
+        @if (ViewBag.Takmicenja != null && ViewBag.Takmicenja.Count > 0)
+        {
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-3">
+                        <h3 class="mb-0">Upcoming Gaming Tournaments</h3>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Game</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var t in ViewBag.Takmicenja)
+                                {
+                                    <tr>
+                                        <td>@t.Naziv</td>
+                                        <td>
+                                            <span class="badge bg-info text-dark">
+                                                @t.Igra
+                                            </span>
+                                        </td>
+                                        <td>@t.Datum.ToString("dd.MM.yyyy")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
 }

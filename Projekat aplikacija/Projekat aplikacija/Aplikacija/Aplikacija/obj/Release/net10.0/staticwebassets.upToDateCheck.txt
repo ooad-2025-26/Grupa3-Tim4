@@ -61,6 +61,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\images\gaming-hero.png
 C:\Users\Korisnik\Desktop\Projekat GameHub\Grupa3-Tim4\Projekat aplikacija\Projekat aplikacija\Aplikacija\Aplikacija\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\Korisnik\Desktop\Projekat GameHub\Grupa3-Tim4\Projekat aplikacija\Projekat aplikacija\Aplikacija\Aplikacija\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\Korisnik\Desktop\Projekat GameHub\Grupa3-Tim4\Projekat aplikacija\Projekat aplikacija\Aplikacija\Aplikacija\wwwroot\lib\jquery\dist\jquery.slim.min.js
