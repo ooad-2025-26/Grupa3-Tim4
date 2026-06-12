@@ -34,7 +34,8 @@ GameHub Manager je web aplikacija razvijena u ASP.NET Core MVC tehnologiji za up
 
 http://gamehubmanager-001-site1.ltempurl.com/
 
-### Konekcijski string: Data Source=SQL6034.site4now.net;
+### Konekcijski string: 
+Data Source=SQL6034.site4now.net;
 Initial Catalog=db_aca956_gamehubbaza;
 User Id=db_aca956_gamehubbaza_admin;
 Password=ooad2026;
