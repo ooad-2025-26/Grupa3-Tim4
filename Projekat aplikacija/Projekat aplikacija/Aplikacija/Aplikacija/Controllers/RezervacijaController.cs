@@ -296,13 +296,22 @@ namespace Aplikacija.Controllers
                 cijenaPoSatu = await _context.XBox.Select(x => x.CijenaPoSatu).FirstOrDefaultAsync();
 
             ViewBag.CijenaPoSatu = cijenaPoSatu;
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var loyalty = await _context.LoyaltyProgram
+                .FirstOrDefaultAsync(l => l.KorisnikId == userId);
+
+            ViewBag.LoyaltyPoints = loyalty != null ? loyalty.UkupniBodovi : 0;
+            ViewBag.PointsPerKM = 50;
+
             return View();
         }
         [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UserCreate(DateTime datum, string selectedHours, string deviceType, string paymentMethod)
-        {
+        public async Task<IActionResult> UserCreate(DateTime datum, string selectedHours, string deviceType, string paymentMethod, int loyaltyPointsToUse)
+        { 
             double cijenaPoSatu = 0;
 
             if (deviceType == "PC")
@@ -320,6 +329,7 @@ namespace Aplikacija.Controllers
             ViewBag.DeviceType = deviceType;
             ViewBag.PaymentMethod = paymentMethod;
             ViewBag.TotalPrice = totalPrice;
+            ViewBag.LoyaltyPointsToUse = loyaltyPointsToUse;
 
             return View("ConfirmPayment");
         }
@@ -359,11 +369,12 @@ namespace Aplikacija.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ConfirmPayment(
-    DateTime datum,
-    string selectedHours,
-    string deviceType,
-    string paymentMethod,
-    double totalPrice)
+     DateTime datum,
+     string selectedHours,
+     string deviceType,
+     string paymentMethod,
+     double totalPrice,
+     int loyaltyPointsToUse)
         {
             var identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -383,6 +394,34 @@ namespace Aplikacija.Controllers
                 .Select(int.Parse)
                 .ToList();
 
+            int pointsPerKM = 50;
+
+            var loyalty = await _context.LoyaltyProgram
+                .FirstOrDefaultAsync(l => l.KorisnikId == userId);
+
+            double loyaltyDiscount = 0;
+
+            if (loyalty != null && loyaltyPointsToUse >= 50)
+            {
+                if (loyaltyPointsToUse > loyalty.UkupniBodovi)
+                {
+                    loyaltyPointsToUse = loyalty.UkupniBodovi;
+                }
+
+                loyaltyDiscount = loyaltyPointsToUse / (double)pointsPerKM;
+
+                if (loyaltyDiscount > totalPrice)
+                {
+                    loyaltyDiscount = totalPrice;
+                    loyaltyPointsToUse = (int)(loyaltyDiscount * pointsPerKM);
+                }
+
+                loyalty.UkupniBodovi -= loyaltyPointsToUse;
+                _context.LoyaltyProgram.Update(loyalty);
+            }
+
+            double finalPrice = totalPrice - loyaltyDiscount;
+
             foreach (int sat in sati)
             {
                 DateTime vrijemeOd = datum.Date.AddHours(sat);
@@ -399,14 +438,13 @@ namespace Aplikacija.Controllers
 
                     foreach (var pc in pcList)
                     {
-                        bool postojiUredjaj = await _context.Uredjaj
-                            .AnyAsync(u => u.Id == pc.Id);
+                        bool postojiUredjaj = await _context.Uredjaj.AnyAsync(u => u.Id == pc.Id);
 
                         if (!postojiUredjaj)
                             continue;
 
                         bool zauzet = await _context.Rezervacija.AnyAsync(r =>
-                        r.Status == StatusRezervacije.Aktivna &&
+                            r.Status == StatusRezervacije.Aktivna &&
                             r.UredjajId == pc.Id &&
                             r.VrijemeOd < vrijemeDo &&
                             r.VrijemeDo > vrijemeOd);
@@ -424,14 +462,13 @@ namespace Aplikacija.Controllers
 
                     foreach (var ps in psList)
                     {
-                        bool postojiUredjaj = await _context.Uredjaj
-                            .AnyAsync(u => u.Id == ps.Id);
+                        bool postojiUredjaj = await _context.Uredjaj.AnyAsync(u => u.Id == ps.Id);
 
                         if (!postojiUredjaj)
                             continue;
 
                         bool zauzet = await _context.Rezervacija.AnyAsync(r =>
-                        r.Status == StatusRezervacije.Aktivna &&
+                            r.Status == StatusRezervacije.Aktivna &&
                             r.UredjajId == ps.Id &&
                             r.VrijemeOd < vrijemeDo &&
                             r.VrijemeDo > vrijemeOd);
@@ -449,14 +486,13 @@ namespace Aplikacija.Controllers
 
                     foreach (var xbox in xboxList)
                     {
-                        bool postojiUredjaj = await _context.Uredjaj
-                            .AnyAsync(u => u.Id == xbox.Id);
+                        bool postojiUredjaj = await _context.Uredjaj.AnyAsync(u => u.Id == xbox.Id);
 
                         if (!postojiUredjaj)
                             continue;
 
                         bool zauzet = await _context.Rezervacija.AnyAsync(r =>
-                        r.Status == StatusRezervacije.Aktivna &&
+                            r.Status == StatusRezervacije.Aktivna &&
                             r.UredjajId == xbox.Id &&
                             r.VrijemeOd < vrijemeDo &&
                             r.VrijemeDo > vrijemeOd);
@@ -484,32 +520,12 @@ namespace Aplikacija.Controllers
                     UredjajId = slobodanUredjajId
                 };
 
-                if (!await _context.Korisnik.AnyAsync(k => k.Id == userId))
-                {
-                    TempData["Greska"] = "User does not exist.";
-                    return RedirectToAction("UserCreate");
-                }
-
-                if (!await _context.Uredjaj.AnyAsync(u => u.Id == slobodanUredjajId))
-                {
-                    TempData["Greska"] = "Device does not exist.";
-                    return RedirectToAction("UserCreate");
-                }
-
                 _context.Rezervacija.Add(rezervacija);
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateException ex)
-                {
-                    var innerMessage = ex.InnerException?.Message ?? ex.Message;
-                    throw new Exception("SAVE ERROR: " + innerMessage);
-                }
+                await _context.SaveChangesAsync();
 
                 var placanje = new Placanje
                 {
-                    Iznos = totalPrice / sati.Count,
+                    Iznos = finalPrice / sati.Count,
                     MetodaPlacanja = paymentMethod,
                     DatumPlacanja = DateTime.Now,
                     KorisnikId = userId,

@@ -9,19 +9,18 @@
     List<int> busyHours = ViewBag.ZauzetiSati ?? new List<int>();
     double pricePerHour = ViewBag.CijenaPoSatu ?? 0;
     DateTime now = DateTime.Now;
+
+    int loyaltyPoints = ViewBag.LoyaltyPoints ?? 0;
+    int pointsPerKM = ViewBag.PointsPerKM ?? 50;
+    double maxLoyaltyDiscount = loyaltyPoints >= 50 ? loyaltyPoints / (double)pointsPerKM : 0;
 }
 
 <h2>Add Reservation</h2>
 
 <form asp-action="UserCreate" method="get" class="mb-4">
-
     <div class="form-group mb-3">
         <label>Choose device type:</label>
-        <select name="deviceType"
-                class="form-control"
-                style="max-width: 250px;"
-                onchange="this.form.submit()">
-
+        <select name="deviceType" class="form-control" style="max-width: 250px;" onchange="this.form.submit()">
             <option value="PC" selected="@(selectedDeviceType == "PC")">PC</option>
             <option value="PlayStation" selected="@(selectedDeviceType == "PlayStation")">PlayStation</option>
             <option value="XBox" selected="@(selectedDeviceType == "XBox")">XBox</option>
@@ -37,7 +36,6 @@
                style="max-width: 250px;"
                onchange="this.form.submit()" />
     </div>
-
 </form>
 
 <div class="row">
@@ -70,8 +68,18 @@
         Date: <strong>@selectedDate.ToString("yyyy-MM-dd")</strong><br />
         Price per hour: <strong>@pricePerHour.ToString("0.00") KM</strong><br />
         Selected terms: <strong id="selectedHoursText">None</strong><br />
-        Total price: <strong id="totalPriceText">0.00 KM</strong>
+        Regular price: <strong id="totalPriceText">0.00 KM</strong>
     </p>
+
+    <div id="loyaltyInfo" style="display:none;">
+        <hr />
+        <p class="mb-1">
+            Loyalty discount: <strong id="loyaltyDiscountText">0.00 KM</strong>
+        </p>
+        <p>
+            Final price: <strong id="finalPriceText">0.00 KM</strong>
+        </p>
+    </div>
 
     <form asp-action="UserCreate" method="post" id="paymentForm">
         @Html.AntiForgeryToken()
@@ -79,15 +87,42 @@
         <input type="hidden" name="datum" value="@selectedDate.ToString("yyyy-MM-dd")" />
         <input type="hidden" name="deviceType" value="@selectedDeviceType" />
         <input type="hidden" name="selectedHours" id="selectedHoursInput" />
+        <input type="hidden" name="useLoyaltyDiscount" id="useLoyaltyDiscountInput" value="false" />
 
         <div class="form-group mb-3">
             <label>Payment method</label>
             <select name="paymentMethod" class="form-control">
                 <option value="Card">Card payment</option>
                 <option value="Cash">Cash at counter</option>
-                <option value="LoyaltyPoints">Use loyalty points</option>
             </select>
         </div>
+
+        @if (loyaltyPoints >= 50)
+        {
+            <div class="form-group mb-3">
+                <label>Use loyalty points</label>
+
+                <input type="number"
+                       id="loyaltyPointsToUse"
+                       name="loyaltyPointsToUse"
+                       class="form-control"
+                       min="50"
+                       max="@loyaltyPoints"
+                       value="50" />
+
+                <small class="text-muted">
+                    Available points: @loyaltyPoints
+                    (50 points = 1 KM)
+                </small>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning mb-3">
+                You currently have @loyaltyPoints loyalty points.
+                Minimum required for loyalty discount is 50 points.
+            </div>
+        }
 
         <button type="submit" class="btn btn-primary" id="paymentButton" disabled>
             Continue to payment
@@ -99,6 +134,63 @@
     <script>
         const selectedHours = [];
         const pricePerHour = @pricePerHour.ToString(CultureInfo.InvariantCulture);
+        const pointsPerKM = @pointsPerKM;
+        const availableLoyaltyPoints = @loyaltyPoints;
+
+        const paymentButton = document.getElementById("paymentButton");
+        const selectedHoursInput = document.getElementById("selectedHoursInput");
+        const selectedHoursText = document.getElementById("selectedHoursText");
+        const totalPriceText = document.getElementById("totalPriceText");
+        const loyaltyInfo = document.getElementById("loyaltyInfo");
+        const loyaltyDiscountText = document.getElementById("loyaltyDiscountText");
+        const finalPriceText = document.getElementById("finalPriceText");
+        const loyaltyPointsInput = document.getElementById("loyaltyPointsToUse");
+
+        function updatePaymentSummary() {
+            const totalPrice = selectedHours.length * pricePerHour;
+
+            let pointsToUse = 0;
+
+            if (loyaltyPointsInput) {
+                pointsToUse = parseInt(loyaltyPointsInput.value) || 0;
+
+                if (pointsToUse < 50) {
+                    pointsToUse = 0;
+                }
+
+                if (pointsToUse > availableLoyaltyPoints) {
+                    pointsToUse = availableLoyaltyPoints;
+                    loyaltyPointsInput.value = availableLoyaltyPoints;
+                }
+            }
+
+            let loyaltyDiscount = pointsToUse / pointsPerKM;
+
+            if (loyaltyDiscount > totalPrice) {
+                loyaltyDiscount = totalPrice;
+            }
+
+            const finalPrice = totalPrice - loyaltyDiscount;
+
+            selectedHoursInput.value = selectedHours.join(",");
+
+            selectedHoursText.innerText =
+                selectedHours.length === 0
+                    ? "None"
+                    : selectedHours.map(h => `${h}:00 - ${h + 1}:00`).join(", ");
+
+            totalPriceText.innerText = totalPrice.toFixed(2) + " KM";
+
+            if (pointsToUse >= 50 && selectedHours.length > 0) {
+                loyaltyInfo.style.display = "block";
+                loyaltyDiscountText.innerText = loyaltyDiscount.toFixed(2) + " KM";
+                finalPriceText.innerText = finalPrice.toFixed(2) + " KM";
+            } else {
+                loyaltyInfo.style.display = "none";
+            }
+
+            paymentButton.disabled = selectedHours.length === 0;
+        }
 
         document.querySelectorAll(".time-slot").forEach(button => {
             button.addEventListener("click", function () {
@@ -106,34 +198,23 @@
 
                 if (selectedHours.includes(hour)) {
                     selectedHours.splice(selectedHours.indexOf(hour), 1);
-
                     this.classList.remove("btn-warning");
                     this.classList.add("btn-success");
-
                     this.innerHTML = `${hour}:00 - ${hour + 1}:00<br />Available`;
                 } else {
                     selectedHours.push(hour);
-
                     this.classList.remove("btn-success");
                     this.classList.add("btn-warning");
-
                     this.innerHTML = `${hour}:00 - ${hour + 1}:00<br />Selected`;
                 }
 
                 selectedHours.sort((a, b) => a - b);
-
-                document.getElementById("selectedHoursInput").value = selectedHours.join(",");
-
-                document.getElementById("selectedHoursText").innerText =
-                    selectedHours.length === 0
-                        ? "None"
-                        : selectedHours.map(h => `${h}:00 - ${h + 1}:00`).join(", ");
-
-                document.getElementById("totalPriceText").innerText =
-                    (selectedHours.length * pricePerHour).toFixed(2) + " KM";
-
-                document.getElementById("paymentButton").disabled = selectedHours.length === 0;
+                updatePaymentSummary();
             });
         });
+
+        if (loyaltyPointsInput) {
+            loyaltyPointsInput.addEventListener("input", updatePaymentSummary);
+        }
     </script>
 }

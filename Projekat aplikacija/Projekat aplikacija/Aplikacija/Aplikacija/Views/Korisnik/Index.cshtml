@@ -5,89 +5,121 @@
     var loyaltyPrograms = ViewBag.LoyaltyPrograms as List<Aplikacija.Models.LoyaltyProgram>;
 }
 
+<div class="container mt-4">
 
-<h1>Index</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Users</h2>
+            <p class="text-muted mb-0">Manage users, memberships and loyalty points.</p>
+        </div>
 
-
-@if (User.IsInRole("Administrator"))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prezime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClanarinaAktivna)
-            </th>
-            <th>Loyalty Points</th>
-            <th>Manage Points</th>
-            <th>Actions</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+        @if (User.IsInRole("Administrator"))
         {
-            var loyalty = loyaltyPrograms?.FirstOrDefault(l => l.KorisnikId == item.Id);
-            int points = loyalty != null ? loyalty.UkupniBodovi : 0;
-
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Ime)</td>
-                <td>@Html.DisplayFor(modelItem => item.Prezime)</td>
-                <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                <td>@Html.DisplayFor(modelItem => item.ClanarinaAktivna)</td>
-
-                <td>@points</td>
-
-                <td>
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <form asp-action="AddLoyaltyPoints" method="post" class="mb-2">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="korisnikId" value="@item.Id" />
-                            <input type="number" name="points" min="1" class="form-control mb-1" placeholder="Points to add" />
-                            <button type="submit" class="btn btn-success btn-sm">Add</button>
-                        </form>
-                    }
-
-                    @if (User.IsInRole("Administrator") || User.IsInRole("Employee"))
-                    {
-                        <form asp-action="RemoveLoyaltyPoints" method="post">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="korisnikId" value="@item.Id" />
-                            <input type="number" name="points" min="1" class="form-control mb-1" placeholder="Points to remove" />
-                            <button type="submit" class="btn btn-warning btn-sm">Remove</button>
-                        </form>
-                    }
-                </td>
-
-                <td class="text-end">
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <span>|</span>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <span>|</span>
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
-
-                    @if (User.IsInRole("Employee"))
-                    {
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    }
-                </td>
-            </tr>
+            <a asp-action="Create" class="btn btn-primary">
+                + Create New
+            </a>
         }
-    </tbody>
-</table>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">User List</h5>
+        </div>
+
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Ime)</th>
+                        <th>@Html.DisplayNameFor(model => model.Prezime)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.ClanarinaAktivna)</th>
+                        <th>Loyalty Points</th>
+                        <th>Manage Points</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var loyalty = loyaltyPrograms?.FirstOrDefault(l => l.KorisnikId == item.Id);
+                        int points = loyalty != null ? loyalty.UkupniBodovi : 0;
+
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Ime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Prezime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+
+                            <td>
+                                @if (item.ClanarinaAktivna)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Not active</span>
+                                }
+                            </td>
+
+                            <td>
+                                <span class="badge bg-info text-dark fs-6">@points</span>
+                            </td>
+
+                            <td style="min-width: 230px;">
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <form asp-action="AddLoyaltyPoints" method="post" class="d-flex gap-2 mb-2">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="korisnikId" value="@item.Id" />
+                                        <input type="number" name="points" min="1" class="form-control form-control-sm" placeholder="Add points" />
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            Add
+                                        </button>
+                                    </form>
+                                }
+
+                                @if (User.IsInRole("Administrator") || User.IsInRole("Employee"))
+                                {
+                                    <form asp-action="RemoveLoyaltyPoints" method="post" class="d-flex gap-2">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="korisnikId" value="@item.Id" />
+                                        <input type="number" name="points" min="1" class="form-control form-control-sm" placeholder="Remove points" />
+                                        <button type="submit" class="btn btn-warning btn-sm">
+                                            Remove
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                        Details
+                                    </a>
+
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </a>
+                                }
+
+                                @if (User.IsInRole("Employee"))
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                        Details
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

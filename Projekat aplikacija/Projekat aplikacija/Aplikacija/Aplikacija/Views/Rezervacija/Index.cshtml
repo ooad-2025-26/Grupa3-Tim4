@@ -1,114 +1,114 @@
 ﻿@model IEnumerable<Aplikacija.Models.Rezervacija>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reservations";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
 
-@if (User.IsInRole("Administrator"))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.VrijemeOd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VrijemeDo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                User Email
-            </th>
-            <th>Device</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VrijemeOd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VrijemeDo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                    @item.Korisnik?.Email
-            </td>
-                <td>@item.Uredjaj.TipUredjaja</td>
-                <td>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Reservations</h2>
+            <p class="text-muted mb-0">View and manage gaming device reservations.</p>
+        </div>
 
-                    @if (User.IsInRole("Administrator"))
+        @if (User.IsInRole("Administrator"))
+        {
+            <a asp-action="Create" class="btn btn-primary">
+                + Create New
+            </a>
+        }
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Reservation List</h5>
+        </div>
+
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.VrijemeOd)</th>
+                        <th>@Html.DisplayNameFor(model => model.VrijemeDo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Status)</th>
+                        <th>User Email</th>
+                        <th>Device</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.VrijemeOd)</td>
+                            <td>@Html.DisplayFor(modelItem => item.VrijemeDo)</td>
 
-                        <span>|</span>
+                            <td>
+                                @if (item.Status == StatusRezervacije.Aktivna)
+                                {
+                                    <span class="badge bg-success">Aktivna</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">@item.Status</span>
+                                }
+                            </td>
 
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <td>@item.Korisnik?.Email</td>
+                            <td>@item.Uredjaj?.TipUredjaja</td>
 
-                        <span>|</span>
+                            <td class="text-center">
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                        Details
+                                    </a>
 
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </a>
+                                }
+
+                                @if (User.IsInRole("Employee"))
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                        Details
+                                    </a>
+                                }
+
+                                @if (User.IsInRole("User"))
+                                {
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                        Details
+                                    </a>
+
+                                    @if (item.Status == StatusRezervacije.Aktivna && item.VrijemeOd > DateTime.Now)
+                                    {
+                                        <form asp-action="CancelReservation"
+                                              method="post"
+                                              class="d-inline">
+                                            @Html.AntiForgeryToken()
+
+                                            <input type="hidden" name="id" value="@item.Id" />
+
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                Cancel
+                                            </button>
+                                        </form>
+                                    }
+                                }
+                            </td>
+                        </tr>
                     }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                    @if (User.IsInRole("Employee"))
-                    {
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-
-                        <span>|</span>
-
-                        <form asp-action="StartSession"
-                              method="post"
-                              style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="id" value="@item.Id" />
-                            <button type="submit" class="btn btn-warning btn-sm">
-                                Start Session
-                            </button>
-                        </form>
-                    }
-
-                    @if (User.IsInRole("User"))
-                    {
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-
-                        @if (item.Status == StatusRezervacije.Aktivna && item.VrijemeOd > DateTime.Now)
-                        {
-                            <span>|</span>
-
-                            <form asp-action="CancelReservation"
-                                  method="post"
-                                  style="display:inline;">
-                                @Html.AntiForgeryToken()
-
-                                <input type="hidden"
-                                       name="id"
-                                       value="@item.Id" />
-
-                                <button type="submit"
-                                        class="btn btn-danger btn-sm">
-                                    Cancel
-                                </button>
-                            </form>
-                        }
-                    }
-
-                </td>
-        </tr>
-
-}
-    </tbody>
-</table>
-
-
+</div>

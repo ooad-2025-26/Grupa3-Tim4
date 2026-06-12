@@ -6,6 +6,17 @@
     string deviceType = ViewBag.DeviceType;
     string paymentMethod = ViewBag.PaymentMethod;
     double totalPrice = ViewBag.TotalPrice;
+
+    int loyaltyPointsToUse = ViewBag.LoyaltyPointsToUse ?? 0;
+    int pointsPerKM = 50;
+    double loyaltyDiscount = loyaltyPointsToUse >= 50 ? loyaltyPointsToUse / (double)pointsPerKM : 0;
+
+    if (loyaltyDiscount > totalPrice)
+    {
+        loyaltyDiscount = totalPrice;
+    }
+
+    double finalPrice = totalPrice - loyaltyDiscount;
 }
 
 <h2>Confirm Payment</h2>
@@ -16,7 +27,21 @@
         Date: <strong>@datum.ToString("yyyy-MM-dd")</strong><br />
         Selected hours: <strong>@selectedHours</strong><br />
         Payment method: <strong>@paymentMethod</strong><br />
-        Total amount: <strong>@totalPrice.ToString("0.00") KM</strong>
+        Regular amount: <strong>@totalPrice.ToString("0.00") KM</strong><br />
+
+        @if (loyaltyDiscount > 0)
+        {
+            <span>
+                Loyalty discount: <strong>@loyaltyDiscount.ToString("0.00") KM</strong><br />
+                Final amount: <strong>@finalPrice.ToString("0.00") KM</strong>
+            </span>
+        }
+        else
+        {
+            <span>
+                Total amount: <strong>@totalPrice.ToString("0.00") KM</strong>
+            </span>
+        }
     </p>
 
     <form asp-action="ConfirmPayment" method="post">
@@ -27,7 +52,9 @@
         <input type="hidden" name="deviceType" value="@deviceType" />
         <input type="hidden" name="paymentMethod" value="@paymentMethod" />
         <input type="hidden" name="totalPrice" value="@totalPrice" />
-
+        <input type="hidden" name="loyaltyPointsToUse" value="@ViewBag.LoyaltyPointsToUse" />
+        <input type="hidden" name="loyaltyPointsToUse" value="@loyaltyPointsToUse" />
+   
         @if (paymentMethod == "Card")
         {
             <div class="form-group mb-3">
